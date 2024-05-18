@@ -36,7 +36,11 @@ export const sendEmail = async (data: Email) => {
   }
 
   const from = data.from ?? config.email.defaultFrom;
-  const htmlContent = await edge.render(data.template, data.data);
+  const htmlContent = await edge.render(data.template, {
+    ...data.data,
+    applicationName: config.public.applicationName,
+  });
+
   return await transport.sendMail({
     to: data.to,
     subject: data.subject,

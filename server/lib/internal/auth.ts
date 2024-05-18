@@ -65,7 +65,6 @@ export const register = async (data: Register) => {
     subject: 'Bienvenue sur ' + config.public.applicationName,
     to: data.email,
     data: {
-      applicationName: config.public.applicationName,
       fullname: `${data.firstname} ${data.lastname}`,
       url: `${config.public.webUrl}/auth/activation-compte?token=${validationCode}`,
     },
@@ -115,7 +114,6 @@ export const forgotPassword = async (data: ForgotPassword) => {
     subject: 'Réinitialisation de votre mot de passe',
     to: user.email,
     data: {
-      applicationName: config.public.applicationName,
       fullname: `${user.firstname} ${user.lastname}`,
       url: `${config.public.webUrl}/auth/reinitialisation-mot-de-passe?token=${token}`,
     },
@@ -159,7 +157,6 @@ export const resetPassword = async (data: ResetPassword) => {
     subject: 'Votre mot de passe a été réinitialisé',
     to: passwordReset.user.email,
     data: {
-      applicationName: config.public.applicationName,
       fullname: `${passwordReset.user.firstname} ${passwordReset.user.lastname}`,
       url: `${config.public.webUrl}/auth/connexion`,
     },
