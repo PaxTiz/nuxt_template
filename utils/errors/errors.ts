@@ -10,7 +10,6 @@ export const handleFetchErrors = (error: MaybeRef<FetchError | null>) => {
   }
 
   if (e.statusCode === 401) {
-    console.log('not authenticated');
     throw createError({ statusCode: 401, fatal: true });
   }
 
