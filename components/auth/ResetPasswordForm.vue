@@ -24,7 +24,6 @@ const [passwordConfirmation] = defineField('passwordConfirmation');
 const onSubmit = handleSubmit(async (values) => {
   const { error } = await useCustomFetch('/api/auth/reset-password', {
     method: 'POST',
-    watch: false,
     body: values,
   });
 

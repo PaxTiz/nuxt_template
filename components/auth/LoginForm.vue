@@ -16,7 +16,6 @@ const [password] = defineField('password');
 const onSubmit = handleSubmit(async (values) => {
   const { error } = await useCustomFetch('/api/auth/login', {
     method: 'POST',
-    watch: false,
     body: values,
   });
 

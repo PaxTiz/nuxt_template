@@ -8,6 +8,7 @@ export const useCustomFetch = async <T>(
 ) => {
   const defaults: UseFetchOptions<T> = {
     key: url,
+    watch: false,
   };
 
   const params = defu(options, defaults);

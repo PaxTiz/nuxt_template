@@ -26,7 +26,6 @@ const [addressPostalCode] = defineField('address.postalCode');
 const onSubmit = handleSubmit(async (values) => {
   const { error } = await useCustomFetch('/api/auth/register', {
     method: 'POST',
-    watch: false,
     body: values,
   });
 

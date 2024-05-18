@@ -22,7 +22,6 @@ const [email] = defineField('email');
 const onSubmit = handleSubmit(async (values) => {
   const { error } = await useCustomFetch('/api/auth/validate', {
     method: 'POST',
-    watch: false,
     body: values,
   });
 
