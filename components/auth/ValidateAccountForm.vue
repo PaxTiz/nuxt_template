@@ -16,7 +16,7 @@ const { defineField, errors, handleSubmit } = useForm({
   initialValues: { token: route.query.token as string },
 });
 
-const { setErrors } = useFormErrors('reset_password');
+const { setErrors } = useFormErrors('validate_account');
 const [email] = defineField('email');
 
 const onSubmit = handleSubmit(async (values) => {
@@ -42,7 +42,7 @@ const onSubmit = handleSubmit(async (values) => {
 
 <template>
   <form method="post" @submit.prevent="onSubmit">
-    <AlertErrors for="reset_password" />
+    <AlertErrors for="validate_account" />
 
     <Field
       id="email"

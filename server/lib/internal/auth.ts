@@ -80,7 +80,7 @@ export const validateAccount = async (data: ValidateAccount) => {
     throw createFormError({ key: 'email', message: 'email_not_found' });
   }
   if (user.validationCode !== data.token) {
-    throw createFormError({ key: 'email', message: 'invalid_code' });
+    throw createFormError({ key: 'email', message: 'invalid_token' });
   }
   if (user.isEnabled) {
     throw createFormError({ key: 'email', message: 'account_already_active' });
