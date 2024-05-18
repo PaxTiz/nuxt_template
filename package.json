@@ -1,0 +1,45 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "db:generate": "drizzle-kit generate --name ",
+    "db:migrate": "drizzle-kit migrate",
+    "db:drop": "drizzle-kit drop",
+    "mail:dev": "maildev --incoming-user user --incoming-pass pass"
+  },
+  "dependencies": {
+    "@vee-validate/zod": "^4.12.8",
+    "argon2": "^0.40.1",
+    "drizzle-orm": "^0.30.10",
+    "edge.js": "^6.0.2",
+    "mysql2": "^3.9.7",
+    "nodemailer": "^6.9.13",
+    "nuxt": "^3.11.2",
+    "primevue": "^3.52.0",
+    "vee-validate": "^4.12.8",
+    "vue": "^3.4.27",
+    "vue-router": "^4.3.2",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@nuxtjs/tailwindcss": "^6.12.0",
+    "@tailwindcss/typography": "^0.5.13",
+    "@types/nodemailer": "^6.4.15",
+    "@vueuse/core": "^10.9.0",
+    "@vueuse/nuxt": "^10.9.0",
+    "drizzle-kit": "^0.21.2",
+    "maildev": "^2.1.0",
+    "nuxt-icon": "^0.6.10",
+    "nuxt-primevue": "^0.3.1",
+    "prettier": "^3.2.5",
+    "sass": "^1.77.2",
+    "tailwindcss": "^3.4.3",
+    "vue-tsc": "^1.8.27"
+  }
+}
