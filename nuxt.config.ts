@@ -23,8 +23,9 @@ export default defineNuxtConfig({
       applicationName: process.env.NUXT_PUBLIC_APPLICATION_NAME,
     },
 
-    secrets: {
-      session: process.env.NUXT_SESSION_SECRET,
+    session: {
+      name: 'user',
+      maxAge: 60 * 60 * 24, // 24 hours
     },
 
     database: {
@@ -53,6 +54,7 @@ export default defineNuxtConfig({
   ],
 
   modules: [
+    'nuxt-auth-utils',
     '@nuxtjs/tailwindcss',
     'nuxt-icon',
     '@vueuse/nuxt',

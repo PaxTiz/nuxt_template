@@ -1,16 +1,12 @@
 <script lang="ts" setup>
-import { H3Error } from 'h3';
+import { H3Error } from 'h3'
 
 const props = defineProps<{ error: H3Error }>();
-console.log(props);
-if (props.error.statusCode === 401) {
-  await navigateTo('/auth/connexion');
-}
 
 const title = computed(() => {
   switch (props.error.statusCode) {
     case 401:
-      return 'Vous avez été déconnecté';
+      return 'Vous avez été déconnecté(e)';
     case 403:
       return "Vous n'avez pas l'autorisation de faire cette action";
     case 404:
@@ -20,8 +16,19 @@ const title = computed(() => {
   }
 });
 
+const buttonText = computed(() => {
+  switch (props.error.statusCode) {
+    case 401: return 'Me connecter à nouveau';
+    default: 'Retourner sur la page d\'accueil';
+  }
+})
+
 const back = () => {
-  clearError({ redirect: '/' });
+  clearError({ 
+    redirect: props.error.statusCode === 401 
+      ? '/auth/connexion' 
+      : ''
+  });
 };
 </script>
 
@@ -31,7 +38,7 @@ const back = () => {
       <h2>{{ title }}</h2>
 
       <Button
-        label="Retourner sur la page d'accueil"
+        :label="buttonText"
         size="small"
         class="mt-4"
         @click="back"

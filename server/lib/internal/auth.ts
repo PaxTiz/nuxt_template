@@ -33,8 +33,9 @@ export const login = async (event: H3Event, data: Login) => {
     throw createFormError({ key: 'email', message: 'account_not_enabled' });
   }
 
-  const { update } = await useAuthSession(event);
-  await update(() => ({ userId: user.id }));
+
+  const { password, validationCode, ...sessionUser } = user;
+  await replaceUserSession(event, { user: sessionUser })
 };
 
 export const register = async (data: Register) => {

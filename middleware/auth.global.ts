@@ -3,6 +3,12 @@ export default defineNuxtRouteMiddleware(async ({ path }) => {
     return;
   }
 
-  const { refresh } = useAuth();
-  await refresh();
+  const { fetch, loggedIn } = useUserSession();
+  if (!loggedIn.value) {
+    await fetch();
+  }
+
+  if (!loggedIn.value) {
+    throw createError({ statusCode: 401 });
+  }
 });

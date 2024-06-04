@@ -35,4 +35,4 @@ export const userRelations = relations(users, ({ many }) => ({
 }));
 
 export type FullUser = typeof users.$inferSelect;
-export type User = Omit<FullUser, 'password'>;
+export type User = Omit<FullUser, 'password' | 'validationCode'>;

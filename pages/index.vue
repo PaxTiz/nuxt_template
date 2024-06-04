@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-const { user } = useAuth();
+const { session } = useUserSession();
 </script>
 
 <template>
   <h1>Home</h1>
   <pre>
         <code>
-            {{ user }}
+            {{ session }}
         </code>
     </pre>
 
