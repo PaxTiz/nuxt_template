@@ -1,4 +1,4 @@
-import { register } from '~/server/lib/internal/auth';
+import { internal } from '~/server/lib/internal';
 import { registerSchema } from '~/types/users';
 
 export default eventHandler(async (event) => {
@@ -6,7 +6,7 @@ export default eventHandler(async (event) => {
     body: registerSchema,
   });
 
-  await register(body);
+  await internal.auth.register(body);
 
   setResponseStatus(event, 201);
 });

@@ -1,4 +1,4 @@
-import { validateAccount } from '~/server/lib/internal/auth';
+import { internal } from '~/server/lib/internal';
 import { validateAccountSchema } from '~/types';
 
 export default eventHandler(async (event) => {
@@ -6,5 +6,5 @@ export default eventHandler(async (event) => {
     body: validateAccountSchema,
   });
 
-  await validateAccount(body);
+  await internal.auth.validateAccount(body);
 });

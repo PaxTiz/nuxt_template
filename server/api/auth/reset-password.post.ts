@@ -1,4 +1,4 @@
-import { resetPassword } from '~/server/lib/internal/auth';
+import { internal } from '~/server/lib/internal';
 import { resetPasswordSchema } from '~/types';
 
 export default eventHandler(async (event) => {
@@ -6,5 +6,5 @@ export default eventHandler(async (event) => {
     body: resetPasswordSchema,
   });
 
-  await resetPassword(body);
+  await internal.auth.resetPassword(body);
 });

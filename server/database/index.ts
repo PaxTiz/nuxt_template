@@ -3,7 +3,7 @@ import { migrate as runMigrations } from 'drizzle-orm/mysql2/migrator';
 import mysql from 'mysql2/promise';
 import * as schema from '~/server/database/schema';
 
-type Database = MySql2Database<typeof import('./schema')>;
+export type Database = MySql2Database<typeof import('./schema')>;
 
 let _db: Database | undefined;
 

@@ -1,4 +1,4 @@
-import { forgotPassword } from '~/server/lib/internal/auth';
+import { internal } from '~/server/lib/internal';
 import { forgotPasswordSchema } from '~/types';
 
 export default eventHandler(async (event) => {
@@ -6,5 +6,5 @@ export default eventHandler(async (event) => {
     body: forgotPasswordSchema,
   });
 
-  await forgotPassword(body);
+  await internal.auth.forgotPassword(body);
 });

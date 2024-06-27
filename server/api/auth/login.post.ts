@@ -1,4 +1,4 @@
-import { login } from '~/server/lib/internal/auth';
+import { internal } from '~/server/lib/internal';
 import { loginSchema } from '~/types/users';
 
 export default eventHandler(async (event) => {
@@ -6,5 +6,5 @@ export default eventHandler(async (event) => {
     body: loginSchema,
   });
 
-  await login(event, body);
+  await internal.auth.login(event, body);
 });
