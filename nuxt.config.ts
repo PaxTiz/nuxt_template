@@ -59,7 +59,13 @@ export default defineNuxtConfig({
     'nuxt-icon',
     '@vueuse/nuxt',
     'nuxt-primevue',
+    'nuxt-gtag',
   ],
+
+  gtag: {
+    enabled: false,
+    id: 'ABCD',
+  },
 
   primevue: {
     options: { locale: { ...fr } },
