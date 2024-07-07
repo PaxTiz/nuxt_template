@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Teachers:ital,wght@0,400..800;1,400..800&display=swap');
-@import 'variables.scss';
+
+:root {
+  --primary-color: var(--p-primary-color);
+}
 
 * {
   font-family: 'Teachers', sans-serif;

@@ -2,6 +2,8 @@ import fr from './utils/primevue/locale.json';
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  compatibilityDate: '2024-07-07',
+
   devtools: { enabled: true },
 
   typescript: {
@@ -48,17 +50,14 @@ export default defineNuxtConfig({
     },
   },
 
-  css: [
-    './assets/scss/app.scss',
-    'primevue/resources/themes/aura-light-blue/theme.css',
-  ],
+  css: ['./assets/scss/app.scss'],
 
   modules: [
     'nuxt-auth-utils',
+    '@primevue/nuxt-module',
     '@nuxtjs/tailwindcss',
     'nuxt-icon',
     '@vueuse/nuxt',
-    'nuxt-primevue',
     'nuxt-gtag',
   ],
 
@@ -69,8 +68,16 @@ export default defineNuxtConfig({
 
   primevue: {
     options: { locale: { ...fr } },
+    importTheme: { from: '~/utils/primevue/theme.ts' },
     components: {
       include: ['Divider', 'Button', 'InputText', 'Message', 'Toast'],
+    },
+  },
+
+  // FIXME: This is needed because there is currently an issue with Nuxt Devtools
+  vite: {
+    optimizeDeps: {
+      exclude: ['vee-validate'],
     },
   },
 });

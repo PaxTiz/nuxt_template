@@ -38,6 +38,7 @@ const { areCookiesEnabled } = useMiamMiam();
   box-shadow: theme('boxShadow.2xl');
   padding: 1rem;
   color: #fff;
+  z-index: 10000;
 
   &__body {
     display: flex;
