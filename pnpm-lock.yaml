@@ -30,8 +30,8 @@ importers:
         specifier: ^6.9.13
         version: 6.9.14
       nuxt-auth-utils:
-        specifier: ^0.1.0
-        version: 0.1.0(magicast@0.3.4)(rollup@4.18.0)
+        specifier: ^0.2.0
+        version: 0.2.0(magicast@0.3.4)(rollup@4.18.0)
       nuxt-gtag:
         specifier: ^2.0.6
         version: 2.0.6(magicast@0.3.4)(rollup@4.18.0)
@@ -3348,8 +3348,8 @@ packages:
     engines: {node: ^16.10.0 || >=18.0.0}
     hasBin: true
 
-  nuxt-auth-utils@0.1.0:
-    resolution: {integrity: sha512-FONe0CCM1NBZr8f92sOzlLAM76c0LtBwT2Xu/KBMRoMnJ2rmgKe5aSl5hlcEC7NpKmZgjm6DRcGl4XIbCikKrQ==}
+  nuxt-auth-utils@0.2.0:
+    resolution: {integrity: sha512-tfGqKAZmoD3Fs1t/+5QVkXZxPY6JU76zttOpyFmaKpNTUE8uFK/t2pyPHwPV4HGuh140c0Zi6HHnZ8tMeI4VwA==}
 
   nuxt-gtag@2.0.6:
     resolution: {integrity: sha512-KjHujiwX4mtmgtHLMQB25NP3vxAuzsEqmZDkUoq9ZUSRLXly6FaPT97BTM4slr72eSfaoPGDeFyFxVvJhN4LVg==}
@@ -8044,7 +8044,7 @@ snapshots:
     optionalDependencies:
       fsevents: 2.3.3
 
-  nuxt-auth-utils@0.1.0(magicast@0.3.4)(rollup@4.18.0):
+  nuxt-auth-utils@0.2.0(magicast@0.3.4)(rollup@4.18.0):
     dependencies:
       '@nuxt/kit': 3.12.3(magicast@0.3.4)(rollup@4.18.0)
       defu: 6.1.4
