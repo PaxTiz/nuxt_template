@@ -1,6 +1,6 @@
 import type { RuntimeConfig } from '@nuxt/schema';
 import { FetchError } from 'ofetch';
-import db, { type Database } from '~/server/database';
+import { type Database, useDatabase } from '~/server/database';
 
 export abstract class Service {
   protected readonly config: RuntimeConfig;
@@ -8,7 +8,7 @@ export abstract class Service {
 
   constructor() {
     this.config = useRuntimeConfig();
-    this.database = db();
+    this.database = useDatabase();
   }
 
   protected handleError(error: unknown): unknown {
