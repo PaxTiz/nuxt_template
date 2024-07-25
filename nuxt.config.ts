@@ -56,9 +56,9 @@ export default defineNuxtConfig({
     'nuxt-auth-utils',
     '@primevue/nuxt-module',
     '@nuxtjs/tailwindcss',
-    'nuxt-icon',
     '@vueuse/nuxt',
     'nuxt-gtag',
+    '@nuxt/icon',
   ],
 
   gtag: {
@@ -70,7 +70,15 @@ export default defineNuxtConfig({
     options: { locale: { ...fr } },
     importTheme: { from: '~/utils/primevue/theme.ts' },
     components: {
-      include: ['Divider', 'Button', 'InputText', 'Message', 'Toast'],
+      include: [
+        'Divider',
+        'Button',
+        'InputText',
+        'Select',
+        'Message',
+        'Toast',
+        'DynamicDialog',
+      ],
     },
   },
 
