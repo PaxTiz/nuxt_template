@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { H3Error } from 'h3'
+import { H3Error } from 'h3';
 
 const props = defineProps<{ error: H3Error }>();
 
@@ -18,16 +18,16 @@ const title = computed(() => {
 
 const buttonText = computed(() => {
   switch (props.error.statusCode) {
-    case 401: return 'Me connecter à nouveau';
-    default: 'Retourner sur la page d\'accueil';
+    case 401:
+      return 'Me connecter à nouveau';
+    default:
+      return "Retourner sur la page d'accueil";
   }
-})
+});
 
 const back = () => {
-  clearError({ 
-    redirect: props.error.statusCode === 401 
-      ? '/auth/connexion' 
-      : ''
+  clearError({
+    redirect: props.error.statusCode === 401 ? '/auth/connexion' : '/',
   });
 };
 </script>
@@ -37,12 +37,7 @@ const back = () => {
     <div class="text-center">
       <h2>{{ title }}</h2>
 
-      <Button
-        :label="buttonText"
-        size="small"
-        class="mt-4"
-        @click="back"
-      />
+      <Button :label="buttonText" size="small" class="mt-4" @click="back" />
     </div>
 
     <DevOnly>
