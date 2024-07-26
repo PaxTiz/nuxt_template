@@ -9,6 +9,8 @@ import {
 import { randomUUID } from 'node:crypto';
 import { passwordResets } from '.';
 
+export type UserRole = 'SUPER_ADMIN' | 'ADMIN' | 'USER';
+
 export const users = mysqlTable('users', {
   id: varchar('id', { length: 36 })
     .primaryKey()

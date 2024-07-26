@@ -72,12 +72,16 @@ export default defineNuxtConfig({
     components: {
       include: [
         'Divider',
+        'Card',
         'Button',
         'InputText',
         'Select',
         'Message',
         'Toast',
         'DynamicDialog',
+        'DataTable',
+        'Column',
+        'Row',
       ],
     },
   },
