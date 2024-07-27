@@ -18,3 +18,13 @@ export const constantsValidation = {
   PASSWORD_REGEX:
     /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/i,
 };
+
+export const paginationSchema = z.object({
+  page: z.coerce.number().min(1),
+  perPage: z.coerce.number().min(1),
+});
+
+export type Paginated<T> = {
+  total: number;
+  items: Array<T>;
+};

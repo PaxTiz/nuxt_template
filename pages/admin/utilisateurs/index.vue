@@ -8,11 +8,13 @@ definePageMeta({ layout: 'admin', middleware: 'admin' });
 <template>
   <AdminHeader title="Liste des utilisateurs" icon="users">
     <template #actions>
-      <Button label="Exporter">
-        <template #icon>
-          <Icon name="lucide:download" />
-        </template>
-      </Button>
+      <a target="_blank" href="/api/admin/export?collection=users">
+        <Button label="Exporter">
+          <template #icon>
+            <Icon name="lucide:download" />
+          </template>
+        </Button>
+      </a>
     </template>
   </AdminHeader>
 
