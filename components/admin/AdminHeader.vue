@@ -1,16 +1,19 @@
 <script lang="ts" setup>
 import type { VNode } from 'vue';
 
-defineProps<{ title: string; icon: string }>();
+defineProps<{ title: string; subtitle?: string; icon: string }>();
 defineSlots<{ actions?: () => VNode }>();
 </script>
 
 <template>
   <div class="admin-header">
-    <h1 class="admin-header__title">
-      <Icon :name="`lucide:${icon}`" />
-      <span>{{ title }}</span>
-    </h1>
+    <div class="admin-header__inner">
+      <h1 class="admin-header__title">
+        <Icon :name="`lucide:${icon}`" />
+        <span>{{ title }}</span>
+      </h1>
+      <p v-if="subtitle" class="mb-0 ml-[calc(32px+1rem)]">{{ subtitle }}</p>
+    </div>
 
     <div v-if="$slots.actions" class="admin-header__actions">
       <slot name="actions" />

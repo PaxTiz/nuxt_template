@@ -25,6 +25,7 @@
     "@vee-validate/zod": "^4.13.0",
     "argon2": "^0.40.3",
     "csv-stringify": "^6.5.1",
+    "date-fns": "^3.6.0",
     "drizzle-orm": "^0.32.0",
     "edge.js": "^6.0.2",
     "mysql2": "^3.10.0",
