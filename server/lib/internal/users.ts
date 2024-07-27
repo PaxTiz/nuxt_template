@@ -4,6 +4,37 @@ import type { AdminUsers, Paginated } from '~/types';
 import { Service } from '../service';
 
 export default class UsersService extends Service {
+  async findById(id: string) {
+    return this.database.query.users.findFirst({
+      columns: {
+        password: false,
+        validationCode: false,
+      },
+      where: eq(users.id, id),
+    });
+  }
+
+  async update(id: string, body: AdminUsers['Update']) {
+    const [response] = await this.database
+      .update(users)
+      .set({
+        firstname: body.firstname,
+        lastname: body.lastname,
+        email: body.email,
+        addressLine1: body.address.line1,
+        addressLine2: body.address.line2,
+        addressPostalCode: body.address.postalCode,
+        addressCity: body.address.city,
+        role: body.role,
+        isEnabled: body.isEnabled,
+      })
+      .where(eq(users.id, id));
+
+    if (response.affectedRows !== 1) {
+      throw createError({ statusCode: 404 });
+    }
+  }
+
   async search(query: AdminUsers['Search']): Promise<Paginated<User>> {
     const conditions: Array<SQL | undefined> = [];
     if (query.isEnabled !== undefined) {

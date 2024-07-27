@@ -11,8 +11,13 @@ export const useFormErrors = (key: string) => {
     }));
   };
 
+  const reset = () => {
+    errors.value = [];
+  };
+
   return {
     errors: readonly(errors),
     setErrors,
+    reset,
   };
 };

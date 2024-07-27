@@ -79,11 +79,13 @@ await fetch();
 
     <Column>
       <template #body="{ data }: { data: User }">
-        <Button label="Voir" text>
-          <template #icon>
-            <Icon name="lucide:edit-3" />
-          </template>
-        </Button>
+        <router-link :to="`/admin/utilisateurs/${data.id}`">
+          <Button label="Voir" text>
+            <template #icon>
+              <Icon name="lucide:edit-3" />
+            </template>
+          </Button>
+        </router-link>
       </template>
     </Column>
   </AdminDataTable>

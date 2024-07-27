@@ -3,6 +3,8 @@ import Sidebar from '~/components/admin/Sidebar.vue';
 </script>
 
 <template>
+  <Toast position="top-center" />
+
   <div class="admin__layout">
     <div class="admin__layout-logo">logo</div>
 

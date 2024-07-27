@@ -1,5 +1,7 @@
 import { z } from 'zod';
 
+export const userRoles = ['USER', 'ADMIN', 'SUPER_ADMIN'] as const;
+
 export const requiredErrorMessage = 'Le champ est obligatoire';
 export const literalError = {
   errorMap: () => ({

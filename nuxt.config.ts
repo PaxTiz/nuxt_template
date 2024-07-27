@@ -76,6 +76,7 @@ export default defineNuxtConfig({
         'Button',
         'InputText',
         'Select',
+        'SelectButton',
         'Message',
         'Toast',
         'Tag',
