@@ -1,3 +1,7 @@
+export const mimeTypes = {
+  csv: 'text/csv',
+};
+
 export const toBase64 = (file: File): Promise<string> =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();

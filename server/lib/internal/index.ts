@@ -1,5 +1,7 @@
 import AuthService from './auth';
 import ExporterService from './exports';
+import DataExtracter from './import/extracter';
+import DataImporter from './import/importer';
 import UsersService from './users';
 
 export const internal = {
@@ -8,4 +10,8 @@ export const internal = {
   users: new UsersService(),
 
   exporter: new ExporterService(),
+
+  extracter: new DataExtracter(),
+
+  importer: new DataImporter(),
 };
