@@ -3,11 +3,11 @@ import { toTypedSchema } from '@vee-validate/zod';
 import { useForm } from 'vee-validate';
 import AlertErrors from '~/components/shared/form/AlertErrors.vue';
 import Field from '~/components/shared/form/Field.vue';
-import { forgotPasswordSchema } from '~/types';
+import { auth } from '~/types';
 
 const toast = useToast();
 const { defineField, errors, handleSubmit } = useForm({
-  validationSchema: toTypedSchema(forgotPasswordSchema),
+  validationSchema: toTypedSchema(auth.forgotPassword),
 });
 
 const { setErrors } = useFormErrors('forgot_password');

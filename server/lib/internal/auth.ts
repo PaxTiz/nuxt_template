@@ -3,18 +3,12 @@ import { and, eq } from 'drizzle-orm';
 import { H3Event } from 'h3';
 import { passwordResets, users } from '~/server/database';
 import { randomString } from '~/server/utils/strings';
-import type {
-  ForgotPassword,
-  Login,
-  Register,
-  ResetPassword,
-  ValidateAccount,
-} from '~/types';
+import type { Auth } from '~/types';
 import { sendEmail } from '../email';
 import { Service } from '../service';
 
 export default class AuthService extends Service {
-  async login(event: H3Event, data: Login) {
+  async login(event: H3Event, data: Auth['Login']) {
     const user = await this.database.query.users.findFirst({
       where: eq(users.email, data.email),
     });
@@ -36,7 +30,7 @@ export default class AuthService extends Service {
     await replaceUserSession(event, { user: sessionUser });
   }
 
-  async register(data: Register) {
+  async register(data: Auth['Register']) {
     const emailInUse = await this.database.query.users.findFirst({
       where: eq(users.email, data.email),
     });
@@ -72,7 +66,7 @@ export default class AuthService extends Service {
     ]);
   }
 
-  async validateAccount(data: ValidateAccount) {
+  async validateAccount(data: Auth['ValidateAccount']) {
     const user = await this.database.query.users.findFirst({
       where: eq(users.email, data.email),
     });
@@ -98,7 +92,7 @@ export default class AuthService extends Service {
       );
   }
 
-  async forgotPassword(data: ForgotPassword) {
+  async forgotPassword(data: Auth['ForgotPassword']) {
     const user = await this.database.query.users.findFirst({
       where: eq(users.email, data.email),
     });
@@ -125,7 +119,7 @@ export default class AuthService extends Service {
     ]);
   }
 
-  async resetPassword(data: ResetPassword) {
+  async resetPassword(data: Auth['ResetPassword']) {
     const passwordReset = await this.database.query.passwordResets.findFirst({
       where: eq(passwordResets.token, data.token),
       with: { user: true },

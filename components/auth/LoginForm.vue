@@ -3,10 +3,10 @@ import { toTypedSchema } from '@vee-validate/zod';
 import { useForm } from 'vee-validate';
 import AlertErrors from '~/components/shared/form/AlertErrors.vue';
 import Field from '~/components/shared/form/Field.vue';
-import { loginSchema } from '~/types';
+import { auth } from '~/types';
 
 const { defineField, errors, handleSubmit } = useForm({
-  validationSchema: toTypedSchema(loginSchema),
+  validationSchema: toTypedSchema(auth.login),
 });
 
 const { setErrors } = useFormErrors('login');

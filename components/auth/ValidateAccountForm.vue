@@ -3,7 +3,7 @@ import { toTypedSchema } from '@vee-validate/zod';
 import { useForm } from 'vee-validate';
 import AlertErrors from '~/components/shared/form/AlertErrors.vue';
 import Field from '~/components/shared/form/Field.vue';
-import { validateAccountSchema } from '~/types';
+import { auth } from '~/types';
 
 const route = useRoute();
 if (!route.query.token) {
@@ -12,7 +12,7 @@ if (!route.query.token) {
 
 const toast = useToast();
 const { defineField, errors, handleSubmit } = useForm({
-  validationSchema: toTypedSchema(validateAccountSchema),
+  validationSchema: toTypedSchema(auth.validateAccount),
   initialValues: { token: route.query.token as string },
 });
 

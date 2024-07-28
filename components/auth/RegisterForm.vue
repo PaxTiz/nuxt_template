@@ -3,10 +3,10 @@ import { toTypedSchema } from '@vee-validate/zod';
 import { useForm } from 'vee-validate';
 import AlertErrors from '~/components/shared/form/AlertErrors.vue';
 import Field from '~/components/shared/form/Field.vue';
-import { registerFormSchema } from '~/types';
+import { auth } from '~/types';
 
 const { defineField, errors, handleSubmit } = useForm({
-  validationSchema: toTypedSchema(registerFormSchema),
+  validationSchema: toTypedSchema(auth.registerForm),
   initialValues: { address: {} },
 });
 

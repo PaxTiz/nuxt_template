@@ -1,3 +1,3 @@
-export * from './admin/users.js';
+export * from './admin/users';
+export * from './auth';
 export * from './shared';
-export * from './users';
