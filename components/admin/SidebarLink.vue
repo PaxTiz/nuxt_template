@@ -19,9 +19,10 @@ defineProps<{
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: #000;
+  color: theme('colors.gray.600');
   text-decoration: none;
   padding: 0.5rem 0;
+  font-size: 0.9rem;
 
   &:hover,
   &.active {

@@ -10,18 +10,29 @@ const { data } = await useCustomFetch<User>(
   `/api/admin/users/${route.params.id}`,
 );
 
+const { currentTab, tabs } = useAdminTabHeader([
+  { label: 'Modifier', key: 'update_form' },
+] as const);
+
 const { formatDate } = useFormatter();
 const createdAt = formatDate(data.value.createdAt, 'EEEE dd MMMM yyyy à kk:mm');
 </script>
 
 <template>
   <AdminHeader
+    v-model:tab="currentTab"
     :title="`Modifier l'utilisateur ${data.firstname} ${data.lastname}`"
     :subtitle="`Utilisateur crée le ${createdAt}`"
-    icon="user-round"
+    :breadcrumb="[
+      { label: 'Utilisateurs', url: '/utilisateurs' },
+      { label: `Modifier ${data.firstname} ${data.lastname}` },
+    ]"
+    :tabs="tabs"
   />
 
-  <UserForm :user="data" />
+  <div class="p-8">
+    <UserForm v-if="currentTab === 'update_form'" :user="data" />
+  </div>
 </template>
 
 <style lang="scss" scoped></style>

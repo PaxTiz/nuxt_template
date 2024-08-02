@@ -50,7 +50,7 @@ const isOpen = ref(props.defaultOpen);
     font-size: 1rem;
     font-weight: bold;
     color: theme('colors.blue.500');
-    text-transform: uppercase;
+    // text-transform: uppercase;
   }
 }
 </style>

@@ -1,32 +1,104 @@
 <script lang="ts" setup>
 import type { VNode } from 'vue';
+import type { Tab } from '~/composables/useAdminTabHeader.js';
 
-defineProps<{ title: string; subtitle?: string; icon: string }>();
-defineSlots<{ actions?: () => VNode }>();
+const modelValue = defineModel<string>('tab');
+
+defineProps<{
+  title: string;
+  subtitle?: string;
+  breadcrumb?: Array<{ label: string; url?: string }>;
+  tabs?: Array<Tab>;
+}>();
+defineSlots<{
+  actions?: () => VNode;
+}>();
 </script>
 
 <template>
-  <div class="admin-header">
-    <div class="admin-header__inner">
-      <h1 class="admin-header__title">
-        <Icon :name="`lucide:${icon}`" />
-        <span>{{ title }}</span>
-      </h1>
-      <p v-if="subtitle" class="mb-0 ml-[calc(32px+1rem)]">{{ subtitle }}</p>
+  <div class="admin-header" :class="{ 'with-tabs': tabs && tabs.length > 0 }">
+    <div class="admin-header__content">
+      <div class="admin-header__inner">
+        <div v-if="breadcrumb" class="admin-header__breadcrumb">
+          <router-link to="/admin">
+            <Icon name="lucide:home" />
+            <span>Accueil</span>
+          </router-link>
+
+          <Icon name="lucide:chevron-right" />
+
+          <template v-for="(item, index) in breadcrumb" :key="item.label">
+            <router-link v-if="item.url" :to="`/admin${item.url}`">
+              {{ item.label }}
+            </router-link>
+            <span v-else>{{ item.label }}</span>
+
+            <Icon
+              v-if="index !== breadcrumb.length - 1"
+              name="lucide:chevron-right"
+            />
+          </template>
+        </div>
+
+        <h1 class="admin-header__title">
+          <!-- <Icon :name="`lucide:${icon}`" /> -->
+          <span>{{ title }}</span>
+        </h1>
+        <p v-if="subtitle" class="text-gray-600 mt-2 mb-0">{{ subtitle }}</p>
+      </div>
+
+      <div v-if="$slots.actions" class="admin-header__actions">
+        <slot name="actions" />
+      </div>
     </div>
 
-    <div v-if="$slots.actions" class="admin-header__actions">
-      <slot name="actions" />
+    <div v-if="tabs && tabs.length > 0" class="admin-header__tabs">
+      <button
+        v-for="tab in tabs"
+        :key="tab.key"
+        :class="{ active: tab.key === modelValue }"
+        @click="() => (modelValue = tab.key)"
+      >
+        {{ tab.label }}
+      </button>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .admin-header {
+  background-color: #fff;
+  box-shadow: theme('dropShadow.DEFAULT');
+  padding: theme('padding.8');
+
+  &.with-tabs {
+    padding-bottom: 0;
+  }
+}
+
+.admin-header__content {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
+}
+
+.admin-header__breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+
+  & > * {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: theme('colors.gray.600');
+  }
+  & > a:hover {
+    color: #000;
+  }
 }
 
 .admin-header__title {
@@ -41,5 +113,23 @@ defineSlots<{ actions?: () => VNode }>();
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+
+.admin-header__tabs {
+  margin-top: theme('margin.4');
+
+  button {
+    padding: theme('padding.2') theme('padding.4');
+    background-color: transparent;
+    border: 2px solid transparent;
+    cursor: pointer;
+    color: theme('colors.gray.600');
+    font-size: 1rem;
+
+    &.active {
+      color: theme('colors.primary');
+      border-bottom-color: theme('borderColor.primary');
+    }
+  }
 }
 </style>

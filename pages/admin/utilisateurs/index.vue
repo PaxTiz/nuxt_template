@@ -6,7 +6,15 @@ definePageMeta({ layout: 'admin', middleware: 'admin' });
 </script>
 
 <template>
-  <AdminHeader title="Liste des utilisateurs" icon="users">
+  <AdminHeader
+    title="Liste des utilisateurs"
+    :breadcrumb="[
+      {
+        label: 'Utilisateurs',
+        url: '/utilisateurs',
+      },
+    ]"
+  >
     <template #actions>
       <a target="_blank" href="/api/admin/export?collection=users">
         <Button label="Exporter">
@@ -18,7 +26,9 @@ definePageMeta({ layout: 'admin', middleware: 'admin' });
     </template>
   </AdminHeader>
 
-  <UsersList />
+  <div class="p-8">
+    <UsersList />
+  </div>
 </template>
 
 <style lang="scss" scoped></style>

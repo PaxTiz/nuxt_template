@@ -6,15 +6,12 @@ import Sidebar from '~/components/admin/Sidebar.vue';
   <Toast position="top-center" />
 
   <div class="admin__layout">
-    <div class="admin__layout-logo">logo</div>
-
-    <div class="admin__layout-header">
-      <router-link to="/">
-        <Button label="Retour au site" text>
-          <template #icon>
-            <Icon name="lucide:square-arrow-out-up-left" />
-          </template>
-        </Button>
+    <div class="admin__layout-logo">
+      <router-link to="/admin">
+        <img
+          src="https://about.google/assets-main/img/glue-google-color-logo.svg"
+          alt=""
+        />
       </router-link>
     </div>
 
@@ -32,43 +29,37 @@ import Sidebar from '~/components/admin/Sidebar.vue';
 .admin__layout {
   display: grid;
   grid-template-areas:
-    'logo header'
+    'logo body'
     'sidebar body';
   grid-template-columns: 300px 1fr;
   grid-template-rows: auto 1fr;
-  min-height: 100vh;
+  height: 100vh;
 }
 
 .admin__layout-logo,
-.admin__layout-header {
-  background-color: theme('backgroundColor.gray.50');
+.admin__layout-header,
+.admin__layout-sidebar {
+  background-color: #fff;
 }
 
 .admin__layout-logo {
   grid-area: logo;
-  border-right: 2px solid theme('borderColor.gray.200');
-  border-bottom: 2px solid theme('borderColor.gray.200');
-  padding: theme('padding.4');
+  border-right: 2px solid rgb(0 0 0 / 0.06);
+  padding: theme('padding.6') theme('padding.6') 0 theme('padding.6');
   display: flex;
   align-items: center;
-}
-
-.admin__layout-header {
-  grid-area: header;
-  border-bottom: 2px solid theme('borderColor.gray.200');
-  padding: theme('padding.4');
-  display: flex;
-  justify-content: flex-end;
+  height: fit-content;
+  height: 75px;
 }
 
 .admin__layout-sidebar {
   grid-area: sidebar;
-  border-right: 2px solid theme('borderColor.gray.200');
-  padding: theme('padding.4');
+  border-right: 2px solid rgb(0 0 0 / 0.06);
 }
 
 .admin__layout-body {
   grid-area: body;
-  padding: theme('padding.8');
+  background-color: theme('backgroundColor.gray.50');
+  overflow-y: scroll;
 }
 </style>
