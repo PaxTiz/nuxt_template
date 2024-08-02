@@ -30,7 +30,7 @@ defineEmits<{ (e: 'click'): void }>();
   cursor: pointer;
 
   &.active {
-    color: theme('colors.blue.500');
+    color: theme('colors.primary');
     background-color: theme('backgroundColor.blue.100');
   }
 }

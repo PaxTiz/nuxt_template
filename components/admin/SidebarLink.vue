@@ -26,7 +26,7 @@ defineProps<{
 
   &:hover,
   &.active {
-    color: theme('colors.blue.500');
+    color: theme('colors.primary');
   }
 }
 </style>

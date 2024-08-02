@@ -49,7 +49,7 @@ const isOpen = ref(props.defaultOpen);
     display: block;
     font-size: 1rem;
     font-weight: bold;
-    color: theme('colors.blue.500');
+    color: theme('colors.primary');
     // text-transform: uppercase;
   }
 }

@@ -317,7 +317,7 @@ onBeforeUnmount(() => {
   cursor: pointer;
 
   &.active {
-    color: theme('colors.blue.500');
+    color: theme('colors.primary');
     background-color: theme('backgroundColor.blue.100');
   }
 }
@@ -326,7 +326,7 @@ onBeforeUnmount(() => {
   padding: theme('padding.2');
 
   :deep(a) {
-    color: theme('colors.blue.500');
+    color: theme('colors.primary');
     text-decoration: underline;
   }
 }

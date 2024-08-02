@@ -106,7 +106,7 @@ defineSlots<{
   align-items: center;
   gap: 1rem;
   margin: 0;
-  color: theme('colors.blue.500');
+  color: theme('colors.primary');
 }
 
 .admin-header__actions {
