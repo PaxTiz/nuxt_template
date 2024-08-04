@@ -48,7 +48,6 @@ import Sidebar from '~/components/admin/Sidebar.vue';
   padding: theme('padding.6') theme('padding.6') 0 theme('padding.6');
   display: flex;
   align-items: center;
-  height: fit-content;
   height: 75px;
 }
 
