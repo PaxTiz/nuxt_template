@@ -1,9 +1,9 @@
 import { relations } from 'drizzle-orm';
 import {
   boolean,
+  datetime,
   mysqlEnum,
   mysqlTable,
-  timestamp,
   varchar,
 } from 'drizzle-orm/mysql-core';
 import { randomUUID } from 'node:crypto';
@@ -29,7 +29,9 @@ export const users = mysqlTable('users', {
   role: mysqlEnum('role', ['SUPER_ADMIN', 'ADMIN', 'USER'])
     .default('USER')
     .notNull(),
-  createdAt: timestamp('created_at').notNull().defaultNow(),
+  createdAt: datetime('created_at')
+    .notNull()
+    .$defaultFn(() => new Date()),
 });
 
 export const userRelations = relations(users, ({ many }) => ({

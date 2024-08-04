@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "f1caaba7-5b8e-497e-8fb8-34a8dac1c3dc",
+  "id": "0dfa4074-2bdb-44b6-b3cd-4d6b114315ab",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "password_resets": {
@@ -146,11 +146,10 @@
         },
         "created_at": {
           "name": "created_at",
-          "type": "timestamp",
+          "type": "datetime",
           "primaryKey": false,
           "notNull": true,
-          "autoincrement": false,
-          "default": "(now())"
+          "autoincrement": false
         }
       },
       "indexes": {},
@@ -183,5 +182,9 @@
     "schemas": {},
     "tables": {},
     "columns": {}
+  },
+  "internal": {
+    "tables": {},
+    "indexes": {}
   }
 }
