@@ -11,6 +11,10 @@ export default defineNuxtConfig({
     typeCheck: true,
   },
 
+  components: {
+    dirs: [],
+  },
+
   app: {
     head: {
       titleTemplate: '%s - ' + process.env.NUXT_PUBLIC_APPLICATION_NAME,
