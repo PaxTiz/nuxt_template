@@ -35,6 +35,11 @@ const sidebar = computed<Sidebar>(() => [
     ],
   },
 ]);
+
+const onLogout = async () => {
+  await useCustomFetch('/api/auth/logout', { method: 'POST' });
+  await navigateTo('/auth/connexion');
+};
 </script>
 
 <template>
@@ -74,7 +79,12 @@ const sidebar = computed<Sidebar>(() => [
             </Button>
           </router-link>
 
-          <Button v-tooltip.top="'Me déconnecter'" severity="danger" text>
+          <Button
+            v-tooltip.top="'Me déconnecter'"
+            severity="danger"
+            text
+            @click="onLogout"
+          >
             <template #icon>
               <Icon name="lucide:log-out" />
             </template>
