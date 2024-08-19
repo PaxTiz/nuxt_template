@@ -142,15 +142,34 @@ const onSubmit = handleSubmit(async (values) => {
           <Field
             id="role"
             label="Rôle"
-            v-slot="{ id, hasError }"
+            help-title="A propos des rôles"
             :error="errors.role"
           >
-            <Select
-              v-model="role"
-              :input-id="id"
-              :options="userRoles.options"
-              :invalid="hasError"
-            />
+            <template #default="{ id, hasError }">
+              <Select
+                v-model="role"
+                :input-id="id"
+                :options="userRoles.options"
+                :invalid="hasError"
+              />
+            </template>
+
+            <template #help>
+              <ul class="prose m-0">
+                <li>
+                  <b>USER</b> : rôle de base des utilisateurs de l'application
+                </li>
+                <li>
+                  <b>ADMIN</b> : rôle pour les personnes en charge de
+                  l'administration du site
+                </li>
+                <li>
+                  <b>DEVELOPER</b> : rôle réservé aux développeurs ayant les
+                  droits admin ainsi que des informations supplémentaires en cas
+                  de problème
+                </li>
+              </ul>
+            </template>
           </Field>
 
           <Field

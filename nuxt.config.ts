@@ -86,6 +86,7 @@ export default defineNuxtConfig({
         'Toast',
         'Tag',
         'ProgressBar',
+        'Dialog',
         'DynamicDialog',
         'DataTable',
         'Column',
