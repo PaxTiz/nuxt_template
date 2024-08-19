@@ -2,7 +2,7 @@ import { internal } from '~/server/lib/internal';
 import { adminImporter } from '~/types';
 
 export default eventHandler(async (event) => {
-  await useUser(event, ['ADMIN', 'SUPER_ADMIN']);
+  await useUser(event, ['ADMIN', 'DEVELOPER']);
 
   const { body } = await useValidation(event, {
     body: adminImporter.importer,

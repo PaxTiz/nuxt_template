@@ -17,7 +17,7 @@ CREATE TABLE `users` (
 	`address_city` varchar(191) NOT NULL,
 	`is_enabled` boolean NOT NULL DEFAULT false,
 	`validation_code` varchar(16),
-	`role` enum('SUPER_ADMIN','ADMIN','USER') NOT NULL DEFAULT 'USER',
+	`role` enum('DEVELOPER','ADMIN','USER') NOT NULL DEFAULT 'USER',
 	`created_at` datetime NOT NULL,
 	CONSTRAINT `users_id` PRIMARY KEY(`id`),
 	CONSTRAINT `users_email_unique` UNIQUE(`email`),

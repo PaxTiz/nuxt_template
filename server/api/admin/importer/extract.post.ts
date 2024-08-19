@@ -3,7 +3,7 @@ import { adminImporter } from '~/types';
 import { mimeTypes } from '~/utils/shared/files';
 
 export default eventHandler(async (event) => {
-  await useUser(event, ['ADMIN', 'SUPER_ADMIN']);
+  await useUser(event, ['ADMIN', 'DEVELOPER']);
 
   const { query, files } = await useValidation(event, {
     query: adminImporter.extract,

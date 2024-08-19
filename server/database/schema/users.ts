@@ -7,9 +7,8 @@ import {
   varchar,
 } from 'drizzle-orm/mysql-core';
 import { randomUUID } from 'node:crypto';
+import type { UserRole } from '~/types';
 import { passwordResets } from '.';
-
-export type UserRole = 'SUPER_ADMIN' | 'ADMIN' | 'USER';
 
 export const users = mysqlTable('users', {
   id: varchar('id', { length: 36 })
@@ -26,7 +25,8 @@ export const users = mysqlTable('users', {
   addressCity: varchar('address_city', { length: 191 }).notNull(),
   isEnabled: boolean('is_enabled').notNull().default(false),
   validationCode: varchar('validation_code', { length: 16 }).unique(),
-  role: mysqlEnum('role', ['SUPER_ADMIN', 'ADMIN', 'USER'])
+  role: mysqlEnum('role', ['DEVELOPER', 'ADMIN', 'USER'])
+    .$type<UserRole>()
     .default('USER')
     .notNull(),
   createdAt: datetime('created_at')
