@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
-export const userRoles = ['USER', 'ADMIN', 'SUPER_ADMIN'] as const;
+export const userRoles = z.enum(['USER', 'ADMIN', 'SUPER_ADMIN']);
+export type UserRole = z.infer<typeof userRoles>;
 
 export const requiredErrorMessage = 'Le champ est obligatoire';
 export const literalError = {

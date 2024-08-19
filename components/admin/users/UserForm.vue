@@ -148,7 +148,7 @@ const onSubmit = handleSubmit(async (values) => {
             <Select
               v-model="role"
               :input-id="id"
-              :options="userRoles"
+              :options="userRoles.options"
               :invalid="hasError"
             />
           </Field>

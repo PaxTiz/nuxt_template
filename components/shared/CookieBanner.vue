@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+const config = useRuntimeConfig();
 const { areCookiesEnabled } = useMiamMiam();
 </script>
 
@@ -7,7 +8,7 @@ const { areCookiesEnabled } = useMiamMiam();
     <div class="miam-miam">
       <div class="miam-miam__body">
         <span>
-          {{ $config.public.applicationName }} utilise Google Analytics afin de
+          {{ config.public.applicationName }} utilise Google Analytics afin de
           récupérer des statistiques d'utilisation
         </span>
 

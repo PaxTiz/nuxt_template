@@ -34,7 +34,7 @@ export const adminUsers = {
         .length(5, 'Le code postal doit être de 5 caractères')
         .regex(/(\d)+/, 'Le code postal ne peut être composé que de chiffres'),
     }),
-    role: z.enum(userRoles),
+    role: userRoles,
     isEnabled: booleanSchema,
   }),
 };
