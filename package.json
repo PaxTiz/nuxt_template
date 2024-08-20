@@ -30,7 +30,7 @@
     "edge.js": "^6.0.2",
     "mysql2": "^3.10.0",
     "nodemailer": "^6.9.13",
-    "nuxt-auth-utils": "^0.2.0",
+    "nuxt-auth-utils": "^0.3.4",
     "nuxt-gtag": "^2.0.6",
     "primevue": "^4.0.0",
     "vee-validate": "^4.13.0",
