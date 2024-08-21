@@ -49,24 +49,24 @@ const needHelp = computed(() => props.helpMessage || slots.help);
     <small v-if="error !== undefined" class="text-red-500">
       {{ error }}
     </small>
-  </div>
 
-  <Dialog
-    v-if="needHelp"
-    to="body"
-    v-model:visible="isModalOpen"
-    :header="helpTitle"
-    :style="{ maxWidth: '500px' }"
-    :draggable="false"
-    append-to="body"
-    modal
-    dismissable-mask
-    close-on-escape
-    block-scroll
-  >
-    <p v-if="helpMessage" class="m-0">{{ helpMessage }}</p>
-    <slot v-else name="help" />
-  </Dialog>
+    <Dialog
+      v-if="needHelp"
+      to="body"
+      v-model:visible="isModalOpen"
+      :header="helpTitle"
+      :style="{ maxWidth: '500px' }"
+      :draggable="false"
+      append-to="body"
+      modal
+      dismissable-mask
+      close-on-escape
+      block-scroll
+    >
+      <p v-if="helpMessage" class="m-0">{{ helpMessage }}</p>
+      <slot v-else name="help" />
+    </Dialog>
+  </div>
 </template>
 
 <style scoped lang="scss">

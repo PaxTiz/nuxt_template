@@ -3,17 +3,17 @@ defineProps<{ title: string }>();
 </script>
 
 <template>
-  <Toast position="top-center" />
+  <NuxtLayout name="default">
+    <div class="auth-layout">
+      <div class="auth">
+        <h1 class="text-primary m-0">{{ title }}</h1>
 
-  <div class="auth-layout">
-    <div class="auth">
-      <h1 class="text-primary m-0">{{ title }}</h1>
-
-      <div class="auth-content">
-        <slot />
+        <div class="auth-content">
+          <slot />
+        </div>
       </div>
     </div>
-  </div>
+  </NuxtLayout>
 </template>
 
 <style lang="scss" scoped>

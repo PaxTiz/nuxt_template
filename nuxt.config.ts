@@ -94,4 +94,11 @@ export default defineNuxtConfig({
       ],
     },
   },
+
+  // FIXME: This is needed because there is currently an issue with Nuxt Devtools
+  vite: {
+    optimizeDeps: {
+      exclude: ['vee-validate'],
+    },
+  },
 });

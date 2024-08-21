@@ -3,26 +3,26 @@ import Sidebar from '~/components/admin/Sidebar.vue';
 </script>
 
 <template>
-  <Toast position="top-center" />
+  <NuxtLayout name="default">
+    <div class="admin__layout">
+      <div class="admin__layout-logo">
+        <router-link to="/admin">
+          <img
+            src="https://about.google/assets-main/img/glue-google-color-logo.svg"
+            alt=""
+          />
+        </router-link>
+      </div>
 
-  <div class="admin__layout">
-    <div class="admin__layout-logo">
-      <router-link to="/admin">
-        <img
-          src="https://about.google/assets-main/img/glue-google-color-logo.svg"
-          alt=""
-        />
-      </router-link>
-    </div>
+      <div class="admin__layout-sidebar">
+        <Sidebar />
+      </div>
 
-    <div class="admin__layout-sidebar">
-      <Sidebar />
+      <div class="admin__layout-body">
+        <slot />
+      </div>
     </div>
-
-    <div class="admin__layout-body">
-      <slot />
-    </div>
-  </div>
+  </NuxtLayout>
 </template>
 
 <style lang="scss" scoped>
