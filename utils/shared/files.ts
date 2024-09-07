@@ -1,5 +1,18 @@
 export const mimeTypes = {
   csv: 'text/csv',
+
+  image: [
+    'image/png',
+    'images/jpg',
+    'image/jpeg',
+    'image/gif',
+    'image/webp',
+    'images/avif',
+  ],
+};
+
+export const isImageMimeType = (type: string) => {
+  return mimeTypes.image.includes(type);
 };
 
 export const toBase64 = (file: File): Promise<string> =>

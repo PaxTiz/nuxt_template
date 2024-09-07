@@ -2,6 +2,7 @@
 import DataImporter from '~/components/admin/DataImporter.vue';
 import TextEditor from '~/components/shared/text_editor/TextEditor.vue';
 import Carousel from '~/components/shared/Carousel.vue';
+import DropZone from '~/components/shared/DropZone.vue';
 
 const textEditorValue = ref('');
 
@@ -23,10 +24,21 @@ const carouselItems = [
     image: 'https://picsum.photos/id/1000/500/300',
   },
 ];
+
+const onFilesSelected = (files: Array<File>) => {
+  console.log({ files });
+};
 </script>
 
 <template>
   <div class="components">
+    <Card>
+      <template #title>File Uploader</template>
+      <template #content>
+        <DropZone @select="onFilesSelected" multiple />
+      </template>
+    </Card>
+
     <Card>
       <template #title>Carousel</template>
       <template #content>
