@@ -1,11 +1,11 @@
 import { internal } from '~/server/lib/internal';
-import { adminUsers } from '~/types';
+import { usersSchema } from '~/types';
 
 export default eventHandler(async (event) => {
   await useUser(event, ['ADMIN', 'DEVELOPER']);
 
   const { query } = await useValidation(event, {
-    query: adminUsers.search,
+    query: usersSchema.search,
   });
 
   return internal.users.search(query);

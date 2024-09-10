@@ -1,11 +1,11 @@
 import { internal } from '~/server/lib/internal';
-import { adminUsers } from '~/types';
+import { usersSchema } from '~/types';
 
 export default eventHandler(async (event) => {
   await useUser(event, ['ADMIN', 'DEVELOPER']);
 
   const { params } = await useValidation(event, {
-    params: adminUsers.findOne,
+    params: usersSchema.findOne,
   });
 
   const user = await internal.users.findById(params.id);

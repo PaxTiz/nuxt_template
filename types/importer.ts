@@ -9,7 +9,7 @@ const demoItems = z.array(
   }),
 );
 
-export const adminImporter = {
+export const dataImporterSchema = {
   extract: z.object({
     collection: collections,
   }),
@@ -22,7 +22,7 @@ export const adminImporter = {
   ]),
 };
 
-export type AdminImporter = {
+export type DataImporter = {
   Collection: z.infer<typeof collections>;
 
   Demo: z.infer<typeof demoItems>;

@@ -5,9 +5,9 @@ import {
   paginationSchema,
   requiredErrorMessage,
   userRoles,
-} from '../shared';
+} from './shared';
 
-export const adminUsers = {
+export const usersSchema = {
   findOne: z.object({
     id: z.string().uuid(),
   }),
@@ -39,8 +39,8 @@ export const adminUsers = {
   }),
 };
 
-export type AdminUsers = {
-  Search: z.infer<(typeof adminUsers)['search']>;
+export type Users = {
+  Search: z.infer<(typeof usersSchema)['search']>;
 
-  Update: z.infer<(typeof adminUsers)['update']>;
+  Update: z.infer<(typeof usersSchema)['update']>;
 };

@@ -4,14 +4,14 @@ import { useForm } from 'vee-validate';
 import AlertErrors from '~/components/shared/form/AlertErrors.vue';
 import Field from '~/components/shared/form/Field.vue';
 import type { User } from '~/server/database';
-import { adminUsers, userRoles } from '~/types';
+import { usersSchema, userRoles } from '~/types';
 
 const props = defineProps<{ user: User }>();
 
 const toast = useToast();
 const { setErrors, reset } = useFormErrors('user_form');
 const { errors, defineField, handleSubmit, isSubmitting } = useForm({
-  validationSchema: toTypedSchema(adminUsers.update),
+  validationSchema: toTypedSchema(usersSchema.update),
   initialValues: {
     firstname: props.user.firstname,
     lastname: props.user.lastname,

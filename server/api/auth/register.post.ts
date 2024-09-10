@@ -1,9 +1,9 @@
 import { internal } from '~/server/lib/internal';
-import { auth } from '~/types';
+import { authSchema } from '~/types';
 
 export default eventHandler(async (event) => {
   const { body } = await useValidation(event, {
-    body: auth.register,
+    body: authSchema.register,
   });
 
   await internal.auth.register(body);

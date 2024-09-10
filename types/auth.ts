@@ -28,7 +28,7 @@ const registerSchema = z.object({
   }),
 });
 
-export const auth = {
+export const authSchema = {
   register: registerSchema,
 
   registerForm: registerSchema
@@ -103,13 +103,13 @@ export const auth = {
 };
 
 export type Auth = {
-  Register: z.infer<(typeof auth)['register']>;
+  Register: z.infer<(typeof authSchema)['register']>;
 
-  Login: z.infer<(typeof auth)['login']>;
+  Login: z.infer<(typeof authSchema)['login']>;
 
-  ValidateAccount: z.infer<(typeof auth)['validateAccount']>;
+  ValidateAccount: z.infer<(typeof authSchema)['validateAccount']>;
 
-  ForgotPassword: z.infer<(typeof auth)['forgotPassword']>;
+  ForgotPassword: z.infer<(typeof authSchema)['forgotPassword']>;
 
-  ResetPassword: z.infer<(typeof auth)['resetPassword']>;
+  ResetPassword: z.infer<(typeof authSchema)['resetPassword']>;
 };

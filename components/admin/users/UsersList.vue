@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { User } from '~/server/database';
-import type { AdminUsers } from '~/types';
+import type { Users } from '~/types';
 import AdminDataTable from '../AdminDataTable.vue';
 
 const activeAccountOptions = [
@@ -10,7 +10,7 @@ const activeAccountOptions = [
 ];
 
 const { items, filters, isLoading, fetch } = useAdminSearch<
-  AdminUsers['Search'],
+  Users['Search'],
   User
 >({
   url: '/api/admin/users',

@@ -1,9 +1,9 @@
 import { internal } from '~/server/lib/internal';
-import { auth } from '~/types';
+import { authSchema } from '~/types';
 
 export default eventHandler(async (event) => {
   const { body } = await useValidation(event, {
-    body: auth.forgotPassword,
+    body: authSchema.forgotPassword,
   });
 
   await internal.auth.forgotPassword(body);

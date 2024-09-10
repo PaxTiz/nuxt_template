@@ -1,6 +1,6 @@
 import { and, count, desc, eq, like, or, SQL } from 'drizzle-orm';
 import { type User, users } from '~/server/database';
-import type { AdminUsers, Paginated } from '~/types';
+import type { Paginated, Users } from '~/types';
 import { Service } from '../service';
 
 export default class UsersService extends Service {
@@ -14,7 +14,7 @@ export default class UsersService extends Service {
     });
   }
 
-  async update(id: string, body: AdminUsers['Update']) {
+  async update(id: string, body: Users['Update']) {
     const [response] = await this.database
       .update(users)
       .set({
@@ -35,7 +35,7 @@ export default class UsersService extends Service {
     }
   }
 
-  async search(query: AdminUsers['Search']): Promise<Paginated<User>> {
+  async search(query: Users['Search']): Promise<Paginated<User>> {
     const conditions: Array<SQL | undefined> = [];
     if (query.isEnabled !== undefined) {
       conditions.push(eq(users.isEnabled, query.isEnabled));
