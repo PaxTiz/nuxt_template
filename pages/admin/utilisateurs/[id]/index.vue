@@ -6,9 +6,7 @@ import type { User } from '~/server/database';
 definePageMeta({ layout: 'admin', middleware: 'admin' });
 
 const route = useRoute();
-const { data } = await useCustomFetch<User>(
-  `/api/admin/users/${route.params.id}`,
-);
+const { data } = await useCustomFetch<User>(`/api/users/${route.params.id}`);
 
 const { currentTab, tabs } = useAdminTabHeader([
   { label: 'Modifier', key: 'update_form' },

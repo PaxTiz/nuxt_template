@@ -33,7 +33,7 @@ const onFileSelected = async (event: FileUploadSelectEvent) => {
   const formData = new FormData();
   formData.append('file', file);
   const { data, error } = await useCustomFetch<Array<T>>(
-    `/api/admin/importer/extract?collection=${props.collection}`,
+    `/api/importer/extract?collection=${props.collection}`,
     {
       method: 'POST',
       body: formData,
@@ -56,16 +56,13 @@ const onImport = async () => {
   }
 
   isImporting.value = true;
-  const { error } = await useCustomFetch<Array<T>>(
-    '/api/admin/importer/import',
-    {
-      method: 'POST',
-      body: {
-        collection: props.collection,
-        items: items.value,
-      },
+  const { error } = await useCustomFetch<Array<T>>('/api/importer/import', {
+    method: 'POST',
+    body: {
+      collection: props.collection,
+      items: items.value,
     },
-  );
+  });
 
   if (error) {
     setErrors(error);

@@ -13,7 +13,7 @@ const { items, filters, isLoading, fetch } = useAdminSearch<
   Users['Search'],
   User
 >({
-  url: '/api/admin/users',
+  url: '/api/users',
   filters: {
     page: 1,
     perPage: 20,

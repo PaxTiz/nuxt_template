@@ -4,7 +4,7 @@ import { useForm } from 'vee-validate';
 import AlertErrors from '~/components/shared/form/AlertErrors.vue';
 import Field from '~/components/shared/form/Field.vue';
 import type { User } from '~/server/database';
-import { usersSchema, userRoles } from '~/types';
+import { userRoles, usersSchema } from '~/types';
 
 const props = defineProps<{ user: User }>();
 
@@ -39,7 +39,7 @@ const [isEnabled] = defineField('isEnabled');
 
 const onSubmit = handleSubmit(async (values) => {
   reset();
-  const { error } = await useCustomFetch(`/api/admin/users/${props.user.id}`, {
+  const { error } = await useCustomFetch(`/api/users/${props.user.id}`, {
     method: 'PATCH',
     body: values,
   });
