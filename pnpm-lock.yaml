@@ -60,8 +60,8 @@ importers:
         specifier: ^6.9.13
         version: 6.9.15
       nuxt-auth-utils:
-        specifier: ^0.3.4
-        version: 0.3.8(magicast@0.3.5)(rollup@4.21.3)
+        specifier: ^0.4.4
+        version: 0.4.4(argon2@0.41.1)(magicast@0.3.5)(rollup@4.21.3)
       nuxt-gtag:
         specifier: ^3.0.1
         version: 3.0.1(magicast@0.3.5)(rollup@4.21.3)
@@ -128,6 +128,18 @@ importers:
         version: 2.1.6(typescript@5.6.2)
 
 packages:
+
+  '@adonisjs/hash@9.0.5':
+    resolution: {integrity: sha512-oY8PafBrdGsr5UY8cAzzxPCtehZDW7KsPcI47dZpjydOdL/PQrT4liX+cGujL6mSbi3JEgQLBgBs/+SlPFvCrg==}
+    engines: {node: '>=20.6.0'}
+    peerDependencies:
+      argon2: ^0.31.2 || ^0.41.0
+      bcrypt: ^5.1.1
+    peerDependenciesMeta:
+      argon2:
+        optional: true
+      bcrypt:
+        optional: true
 
   '@alloc/quick-lru@5.2.0':
     resolution: {integrity: sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==}
@@ -1246,6 +1258,10 @@ packages:
 
   '@poppinss/utils@6.8.1':
     resolution: {integrity: sha512-iVom/rkK2N2fPjkhAOrgNb7HnPxxoMOL1NGmQwfg7UARAQJ9PRX0zkboUcNaAsuyrtswMuSnhVVZBB84fCDVVQ==}
+    engines: {node: '>=18.16.0'}
+
+  '@poppinss/utils@6.8.3':
+    resolution: {integrity: sha512-YGeH7pIUm9ExONURNH3xN61dBZ0SXgVuPA9E76t7EHeZHXPNrmR8TlbXQaka6kd5n+cpBNcHG4VsVfYf59bZ7g==}
     engines: {node: '>=18.16.0'}
 
   '@primeuix/styled@0.0.5':
@@ -3590,8 +3606,16 @@ packages:
     engines: {node: ^16.10.0 || >=18.0.0}
     hasBin: true
 
-  nuxt-auth-utils@0.3.8:
-    resolution: {integrity: sha512-wIED0FXCiBH1FV9LtJbQ3aP/JCK+FEqpAO4ap/h2GRsfGpa5TMPnXb2QcGDdvSGLlDsILQwzL3uw3BteWH+/EA==}
+  nuxt-auth-utils@0.4.4:
+    resolution: {integrity: sha512-yAtxI4rSyQXcdBy5hQO1foLxigdsRSWdkrzcGSWEtg/+gafsqDikYMARPGWkdXshyu17wH60d+TjspqAnfsvIw==}
+    peerDependencies:
+      '@simplewebauthn/browser': ^10.0.0
+      '@simplewebauthn/server': ^10.0.1
+    peerDependenciesMeta:
+      '@simplewebauthn/browser':
+        optional: true
+      '@simplewebauthn/server':
+        optional: true
 
   nuxt-gtag@3.0.1:
     resolution: {integrity: sha512-dfDeL8JwvwdCddlSBXqofEVdoONVZ5yqztqoiUs+4fEL+QfAAHtK+3MaLyEVO4keZuiyVQs6XPUJyR7afTVXNg==}
@@ -3631,6 +3655,9 @@ packages:
 
   ofetch@1.3.4:
     resolution: {integrity: sha512-KLIET85ik3vhEfS+3fDlc/BAZiAp+43QEC/yCo5zkNoY2YaKvNkOaFr/6wCFgFH1kuYQM5pMNi0Tg8koiIemtw==}
+
+  ofetch@1.4.1:
+    resolution: {integrity: sha512-QZj2DfGplQAr2oj9KzceK9Hwz6Whxazmn85yYeVuS3u9XTMOGMRx0kO95MQ+vLsj/S/NwBDMMLU5hpxvI6Tklw==}
 
   ohash@1.1.4:
     resolution: {integrity: sha512-FlDryZAahJmEF3VR3w1KogSEdWX3WhA5GPakFx4J81kEAiHyLMpdLLElS8n8dfNadMgAne/MywcvmogzscVt4g==}
@@ -5021,6 +5048,13 @@ packages:
 
 snapshots:
 
+  '@adonisjs/hash@9.0.5(argon2@0.41.1)':
+    dependencies:
+      '@phc/format': 1.0.0
+      '@poppinss/utils': 6.8.3
+    optionalDependencies:
+      argon2: 0.41.1
+
   '@alloc/quick-lru@5.2.0': {}
 
   '@ampproject/remapping@2.3.0':
@@ -6056,6 +6090,21 @@ snapshots:
   '@poppinss/macroable@1.0.2': {}
 
   '@poppinss/utils@6.8.1':
+    dependencies:
+      '@lukeed/ms': 2.0.2
+      '@types/bytes': 3.1.4
+      '@types/pluralize': 0.0.33
+      bytes: 3.1.2
+      case-anything: 3.1.0
+      flattie: 1.1.1
+      pluralize: 8.0.0
+      safe-stable-stringify: 2.5.0
+      secure-json-parse: 2.7.0
+      slash: 5.1.0
+      slugify: 1.6.6
+      truncatise: 0.0.8
+
+  '@poppinss/utils@6.8.3':
     dependencies:
       '@lukeed/ms': 2.0.2
       '@types/bytes': 3.1.4
@@ -8646,17 +8695,20 @@ snapshots:
     optionalDependencies:
       fsevents: 2.3.3
 
-  nuxt-auth-utils@0.3.8(magicast@0.3.5)(rollup@4.21.3):
+  nuxt-auth-utils@0.4.4(argon2@0.41.1)(magicast@0.3.5)(rollup@4.21.3):
     dependencies:
+      '@adonisjs/hash': 9.0.5(argon2@0.41.1)
       '@nuxt/kit': 3.13.2(magicast@0.3.5)(rollup@4.21.3)
       defu: 6.1.4
       hookable: 5.5.3
-      ofetch: 1.3.4
+      ofetch: 1.4.1
       ohash: 1.1.4
       pathe: 1.1.2
       scule: 1.3.0
       uncrypto: 0.1.3
     transitivePeerDependencies:
+      - argon2
+      - bcrypt
       - magicast
       - rollup
       - supports-color
@@ -8805,6 +8857,12 @@ snapshots:
   object-inspect@1.13.2: {}
 
   ofetch@1.3.4:
+    dependencies:
+      destr: 2.0.3
+      node-fetch-native: 1.6.4
+      ufo: 1.5.4
+
+  ofetch@1.4.1:
     dependencies:
       destr: 2.0.3
       node-fetch-native: 1.6.4
