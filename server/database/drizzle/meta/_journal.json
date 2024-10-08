@@ -8,6 +8,13 @@
       "when": 1722765404640,
       "tag": "1722765404_create_users_and_password_resets_tables",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1728418290407,
+      "tag": "1728418290_create_jobs_table",
+      "breakpoints": true
     }
   ]
 }
