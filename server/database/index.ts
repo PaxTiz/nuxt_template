@@ -23,6 +23,7 @@ export const useDatabase = () => {
   _db = drizzle(connection, {
     mode: 'default',
     logger: config.database.logs,
+    casing: 'snake_case',
     schema,
   });
 
