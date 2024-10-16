@@ -24,11 +24,14 @@ const onPaginate = (event: DataTablePageEvent) => {
 
 <template>
   <Card
-    :pt="{ root: { class: 'shadow-none border border-solid border-gray-200' } }"
+    :pt="{
+      root: { class: 'shadow-none rounded-none' },
+      body: { class: 'p-0' },
+    }"
   >
     <template #content>
       <div
-        class="listing-header"
+        class="listing-header px-4 pt-4"
         :style="{
           'grid-template-columns': `repeat(${filtersPerRow ?? 2}, 1fr)`,
         }"

@@ -26,7 +26,7 @@ definePageMeta({ layout: 'admin', middleware: 'admin' });
     </template>
   </AdminHeader>
 
-  <div class="p-8">
+  <div>
     <UsersList />
   </div>
 </template>

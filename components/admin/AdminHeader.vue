@@ -51,29 +51,25 @@ defineSlots<{
         <slot name="actions" />
       </div>
     </div>
+  </div>
 
-    <div v-if="tabs && tabs.length > 0" class="admin-header__tabs">
-      <button
-        v-for="tab in tabs"
-        :key="tab.key"
-        :class="{ active: tab.key === modelValue }"
-        @click="() => (modelValue = tab.key)"
-      >
-        {{ tab.label }}
-      </button>
-    </div>
+  <div v-if="tabs && tabs.length > 0" class="admin-header__tabs">
+    <button
+      v-for="tab in tabs"
+      :key="tab.key"
+      :class="{ active: tab.key === modelValue }"
+      @click="() => (modelValue = tab.key)"
+    >
+      {{ tab.label }}
+    </button>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .admin-header {
   background-color: #fff;
-  box-shadow: theme('dropShadow.DEFAULT');
-  padding: theme('padding.8');
-
-  &.with-tabs {
-    padding-bottom: 0;
-  }
+  border-bottom: 1px solid theme('borderColor.gray.200');
+  padding: theme('padding.4') theme('padding.8');
 }
 
 .admin-header__content {
@@ -87,7 +83,7 @@ defineSlots<{
   align-items: center;
   gap: 0.5rem;
   margin-bottom: 0.5rem;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 
   & > * {
     display: flex;
@@ -116,15 +112,22 @@ defineSlots<{
 }
 
 .admin-header__tabs {
-  margin-top: theme('margin.4');
+  background-color: #f9f9f9;
+  border-top: 1px solid theme('borderColor.gray.200');
+  border-bottom: 1px solid theme('borderColor.gray.200');
+  padding: 0 theme('margin.4');
 
   button {
-    padding: theme('padding.2') theme('padding.4');
+    padding: theme('padding.3') theme('padding.6');
     background-color: transparent;
     border: 2px solid transparent;
     cursor: pointer;
     color: theme('colors.gray.600');
     font-size: 1rem;
+
+    &:hover {
+      background-color: theme('backgroundColor.blue.50');
+    }
 
     &.active {
       color: theme('colors.primary');

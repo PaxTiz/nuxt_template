@@ -58,9 +58,7 @@ const onSubmit = handleSubmit(async (values) => {
 </script>
 
 <template>
-  <Card
-    :pt="{ root: { class: 'shadow-none border border-solid border-gray-200' } }"
-  >
+  <Card :pt="{ root: { class: 'shadow-none rounded-none' } }">
     <template #content>
       <form id="update-user" method="post" @submit.prevent="onSubmit">
         <AlertErrors for="user_form" />

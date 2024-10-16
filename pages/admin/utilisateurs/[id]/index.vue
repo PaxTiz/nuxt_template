@@ -28,7 +28,7 @@ const createdAt = formatDate(data.value.createdAt, 'EEEE dd MMMM yyyy à kk:mm')
     :tabs="tabs"
   />
 
-  <div class="p-8">
+  <div>
     <UserForm v-if="currentTab === 'update_form'" :user="data" />
   </div>
 </template>
