@@ -8,7 +8,9 @@ export default defineNuxtConfig({
 
   typescript: {
     strict: true,
-    typeCheck: true,
+
+    // TODO: Enable back type checking (https://github.com/atinux/nuxt-auth-utils/issues/191)
+    typeCheck: false,
   },
 
   components: {
@@ -31,6 +33,7 @@ export default defineNuxtConfig({
 
     session: {
       name: 'user',
+      password: process.env.NUXT_SESSION_PASSWORD!,
       maxAge: 60 * 60 * 24, // 24 hours
     },
 
@@ -92,13 +95,6 @@ export default defineNuxtConfig({
         'Column',
         'Row',
       ],
-    },
-  },
-
-  // FIXME: This is needed because there is currently an issue with Nuxt Devtools
-  vite: {
-    optimizeDeps: {
-      exclude: ['vee-validate'],
     },
   },
 });
