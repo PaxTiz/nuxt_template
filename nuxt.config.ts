@@ -97,4 +97,15 @@ export default defineNuxtConfig({
       ],
     },
   },
+
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          // TODO: Remove this when Nuxt will use modern API by default
+          api: 'modern',
+        },
+      },
+    },
+  },
 });
