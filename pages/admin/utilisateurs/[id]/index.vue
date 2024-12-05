@@ -19,16 +19,16 @@ const createdAt = formatDate(data.value.createdAt, 'EEEE dd MMMM yyyy à kk:mm')
 <template>
   <AdminHeader
     v-model:tab="currentTab"
-    :title="`Modifier l'utilisateur ${data.firstname} ${data.lastname}`"
+    :title="`Aperçu de ${data.firstname} ${data.lastname}`"
     :subtitle="`Utilisateur crée le ${createdAt}`"
     :breadcrumb="[
       { label: 'Utilisateurs', url: '/utilisateurs' },
-      { label: `Modifier ${data.firstname} ${data.lastname}` },
+      { label: `${data.firstname} ${data.lastname}` },
     ]"
     :tabs="tabs"
   />
 
-  <div>
+  <div class="border border-solid border-gray-200 rounded-b-lg bg-white">
     <UserForm v-if="currentTab === 'update_form'" :user="data" />
   </div>
 </template>

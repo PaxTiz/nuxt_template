@@ -68,8 +68,10 @@ defineSlots<{
 <style lang="scss" scoped>
 .admin-header {
   background-color: #fff;
-  border-bottom: 1px solid theme('borderColor.gray.200');
+  border-radius: theme('borderRadius.lg');
+  border: 1px solid theme('borderColor.gray.200');
   padding: theme('padding.4') theme('padding.8');
+  margin-bottom: theme('margin.4');
 }
 
 .admin-header__content {
@@ -112,9 +114,12 @@ defineSlots<{
 }
 
 .admin-header__tabs {
-  background-color: #f9f9f9;
+  background-color: #fff;
   border-top: 1px solid theme('borderColor.gray.200');
-  border-bottom: 1px solid theme('borderColor.gray.200');
+  border-left: 1px solid theme('borderColor.gray.200');
+  border-right: 1px solid theme('borderColor.gray.200');
+  border-top-left-radius: theme('borderRadius.lg');
+  border-top-right-radius: theme('borderRadius.lg');
   padding: 0 theme('margin.4');
 
   button {

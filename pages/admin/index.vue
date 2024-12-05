@@ -7,7 +7,7 @@ definePageMeta({ layout: 'admin', middleware: 'admin' });
 <template>
   <AdminHeader title="Page d'accueil de l'administration" />
 
-  <div class="p-8">
+  <div class="border border-solid border-gray-200 rounded-lg bg-white p-8">
     <p class="m-0">Bienvenue !</p>
   </div>
 </template>

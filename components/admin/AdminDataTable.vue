@@ -4,10 +4,10 @@ import type { VNode } from 'vue';
 
 const page = defineModel<number>('page', { required: true });
 const perPage = defineModel<number>('perPage', { required: true });
+defineEmits<{ (e: 'filter'): void }>();
 defineProps<{
   total: number;
   items: Array<T>;
-  empty: string;
   filtersPerRow?: number;
   loading?: boolean;
 }>();
@@ -25,7 +25,7 @@ const onPaginate = (event: DataTablePageEvent) => {
 <template>
   <Card
     :pt="{
-      root: { class: 'shadow-none rounded-none' },
+      root: { class: 'shadow-none rounded-lg' },
       body: { class: 'p-0' },
     }"
   >
@@ -33,10 +33,16 @@ const onPaginate = (event: DataTablePageEvent) => {
       <div
         class="listing-header px-4 pt-4"
         :style="{
-          'grid-template-columns': `repeat(${filtersPerRow ?? 2}, 1fr)`,
+          'grid-template-columns': `repeat(${filtersPerRow ?? 3}, 1fr)`,
         }"
       >
         <slot name="filters" />
+
+        <Button @click="$emit('filter')">
+          <template #icon>
+            <Icon name="lucide:filter" />
+          </template>
+        </Button>
       </div>
 
       <div class="listing-divider">
@@ -54,9 +60,7 @@ const onPaginate = (event: DataTablePageEvent) => {
           paginator
           lazy
         >
-          <template #empty>
-            {{ empty }}
-          </template>
+          <template #empty> Aucun élément n'a été trouvé </template>
 
           <slot name="default" />
         </DataTable>
@@ -68,7 +72,7 @@ const onPaginate = (event: DataTablePageEvent) => {
 <style lang="scss" scoped>
 .listing-header {
   display: grid;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .listing-divider {

@@ -31,12 +31,16 @@ await fetch();
     v-model:per-page="filters.perPage"
     :items="items.items"
     :total="items.total"
-    :filters-per-row="2"
+    :filters-per-row="3"
     :loading="isLoading"
-    empty="Aucun utilisateur trouvé pour votre recherche"
+    @filter="fetch"
   >
     <template #filters>
-      <InputText v-model="filters.query" placeholder="Rechercher..." />
+      <InputText
+        v-model="filters.query"
+        placeholder="Rechercher..."
+        class="w-full"
+      />
 
       <Select
         v-model="filters.isEnabled"
@@ -44,6 +48,7 @@ await fetch();
         :options="activeAccountOptions"
         option-label="label"
         option-value="value"
+        class="w-full"
       />
     </template>
 

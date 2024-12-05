@@ -29,11 +29,6 @@ export const useAdminSearch = <
     isLoading.value = false;
   };
 
-  watchDebounced(_filters, (newFilters) => fetchData(newFilters), {
-    immediate: client,
-    debounce: 300,
-  });
-
   watch([() => _filters.page, () => _filters.perPage], () => {
     window?.scrollTo({ top: 0, behavior: 'smooth' });
   });
