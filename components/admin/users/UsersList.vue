@@ -9,7 +9,7 @@ const activeAccountOptions = [
   { label: 'Non', value: false },
 ];
 
-const { items, filters, isLoading, fetch } = useAdminSearch<
+const { items, filters, pending, refresh } = await useDataTable<
   Users['Search'],
   User
 >({
@@ -21,8 +21,6 @@ const { items, filters, isLoading, fetch } = useAdminSearch<
     isEnabled: undefined,
   },
 });
-
-await fetch();
 </script>
 
 <template>
@@ -32,8 +30,8 @@ await fetch();
     :items="items.items"
     :total="items.total"
     :filters-per-row="3"
-    :loading="isLoading"
-    @filter="fetch"
+    :loading="pending"
+    @filter="refresh"
   >
     <template #filters>
       <InputText
