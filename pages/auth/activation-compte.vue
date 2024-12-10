@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import ValidateAccountForm from '~/components/auth/ValidateAccountForm.vue';
-
 useHead({ title: 'Activer mon compte' });
 </script>
 

@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import AdminHeader from '~/components/admin/AdminHeader.vue';
-import UserForm from '~/components/admin/users/UserForm.vue';
 import type { User } from '~/server/database';
 
 definePageMeta({ layout: 'admin', middleware: 'admin' });
@@ -13,17 +11,20 @@ const { currentTab, tabs } = useAdminTabHeader([
 ] as const);
 
 const { formatDate } = useFormatter();
-const createdAt = formatDate(data.value.createdAt, 'EEEE dd MMMM yyyy à kk:mm');
+const createdAt = formatDate(
+  data.value!.createdAt,
+  'EEEE dd MMMM yyyy à kk:mm',
+);
 </script>
 
 <template>
   <AdminHeader
     v-model:tab="currentTab"
-    :title="`Aperçu de ${data.firstname} ${data.lastname}`"
+    :title="`Aperçu de ${data!.firstname} ${data!.lastname}`"
     :subtitle="`Utilisateur crée le ${createdAt}`"
     :breadcrumb="[
       { label: 'Utilisateurs', url: '/utilisateurs' },
-      { label: `${data.firstname} ${data.lastname}` },
+      { label: `${data!.firstname} ${data!.lastname}` },
     ]"
     :tabs="tabs"
   />

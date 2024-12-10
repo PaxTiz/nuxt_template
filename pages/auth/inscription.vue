@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import RegisterForm from '~/components/auth/RegisterForm.vue';
-
 useHead({ title: 'Inscription' });
 </script>
 

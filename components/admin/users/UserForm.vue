@@ -1,8 +1,6 @@
 <script lang="ts" setup>
 import { toTypedSchema } from '@vee-validate/zod';
 import { useForm } from 'vee-validate';
-import AlertErrors from '~/components/shared/form/AlertErrors.vue';
-import Field from '~/components/shared/form/Field.vue';
 import type { User } from '~/server/database';
 import { userRoles, usersSchema } from '~/types';
 

@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import AdminHeader from '~/components/admin/AdminHeader.vue';
-
 definePageMeta({ layout: 'admin', middleware: 'admin' });
 </script>
 

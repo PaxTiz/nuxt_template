@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { VNode } from 'vue';
-import type { Tab } from '~/composables/useAdminTabHeader.js';
+import type { Tab } from '~/composables/useAdminTabHeader';
 
 const modelValue = defineModel<string>('tab');
 

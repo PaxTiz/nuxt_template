@@ -1,7 +1,4 @@
 <script lang="ts" setup>
-import SidebarLink from '~/components/admin/SidebarLink.vue';
-import ToggleableContent from '~/components/shared/ToggleableContent.vue';
-
 type SidebarItem = {
   parent?: false;
   text: string;

@@ -1,6 +1,5 @@
 <script lang="ts" generic="T extends Record<string, unknown>" setup>
 import type { FileUploadSelectEvent } from 'primevue/fileupload';
-import AlertErrors from '~/components/shared/form/AlertErrors.vue';
 import type { DataImporter } from '~/types';
 import { mimeTypes } from '~/utils/shared/files';
 
@@ -17,11 +16,8 @@ const showLayout = ref(true);
 const items = ref<Array<T>>();
 const isExtracting = ref(false);
 const isImporting = ref(false);
-const { setErrors, reset } = useFormErrors('data_import');
 
 const onFileSelected = async (event: FileUploadSelectEvent) => {
-  reset();
-
   const files = event.files;
   if (!files || files.length === 0) {
     return;
@@ -35,16 +31,14 @@ const onFileSelected = async (event: FileUploadSelectEvent) => {
   const { data, error } = await useCustomFetch<Array<T>>(
     `/api/importer/extract?collection=${props.collection}`,
     {
+      errorKey: 'data_import',
       method: 'POST',
       body: formData,
     },
   );
 
-  if (error) {
-    onReset();
-    setErrors(error);
-  } else {
-    items.value = data.value;
+  if (!error.value) {
+    items.value = data.value!;
   }
 
   isExtracting.value = false;
@@ -57,6 +51,7 @@ const onImport = async () => {
 
   isImporting.value = true;
   const { error } = await useCustomFetch<Array<T>>('/api/importer/import', {
+    errorKey: 'data_import',
     method: 'POST',
     body: {
       collection: props.collection,
@@ -64,24 +59,19 @@ const onImport = async () => {
     },
   });
 
-  if (error) {
-    setErrors(error);
-  } else {
+  if (!error.value) {
     toast.add({
       severity: 'success',
       summary: 'Action réalisée avec succès',
       detail: 'Le fichier a été extrait et les lignes importées correctement',
       life: 3000,
     });
-
-    onReset();
   }
 
-  isImporting.value = false;
+  onReset();
 };
 
 const onReset = () => {
-  reset();
   items.value = undefined;
   isExtracting.value = false;
   isImporting.value = false;

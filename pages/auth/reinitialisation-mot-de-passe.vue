@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import ResetPasswordForm from '~/components/auth/ResetPasswordForm.vue';
-
 useHead({ title: 'Réinitialiser mon mot de passe' });
 </script>
 

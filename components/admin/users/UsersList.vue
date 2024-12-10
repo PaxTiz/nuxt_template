@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import type { User } from '~/server/database';
 import type { Users } from '~/types';
-import AdminDataTable from '../AdminDataTable.vue';
 
 const activeAccountOptions = [
   { label: 'Tout', value: undefined },

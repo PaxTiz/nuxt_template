@@ -1,13 +1,11 @@
 <script lang="tsx" setup>
+import { InsertImageModal, InsertLinkModal, ToolbarItem } from '#components';
 import Image from '@tiptap/extension-image';
 import Link from '@tiptap/extension-link';
 import TextAlign from '@tiptap/extension-text-align';
 import Underline from '@tiptap/extension-underline';
 import StarterKit from '@tiptap/starter-kit';
 import { EditorContent, useEditor } from '@tiptap/vue-3';
-import InsertImageModal from './InsertImageModal.vue';
-import InsertLinkModal from './InsertLinkModal.vue';
-import ToolbarItem from './ToolbarItem.vue';
 
 const modelValue = defineModel({ required: true });
 

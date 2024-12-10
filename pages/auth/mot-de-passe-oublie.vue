@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import ForgotPasswordForm from '~/components/auth/ForgotPasswordForm.vue';
-
 useHead({ title: 'Mot de passe oublié' });
 </script>
 

@@ -13,9 +13,12 @@ export default defineNuxtConfig({
     typeCheck: false,
   },
 
-  components: {
-    dirs: [],
-  },
+  components: [
+    {
+      path: '~/components',
+      pathPrefix: false,
+    },
+  ],
 
   app: {
     head: {

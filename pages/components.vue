@@ -1,9 +1,4 @@
 <script lang="ts" setup>
-import DataImporter from '~/components/admin/DataImporter.vue';
-import TextEditor from '~/components/shared/text_editor/TextEditor.vue';
-import Carousel from '~/components/shared/Carousel.vue';
-import DropZone from '~/components/shared/DropZone.vue';
-
 const textEditorValue = ref('');
 
 const carouselItems = [
