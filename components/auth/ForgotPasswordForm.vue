@@ -10,18 +10,16 @@ const { defineField, errors, handleSubmit } = useForm({
   validationSchema: toTypedSchema(authSchema.forgotPassword),
 });
 
-const { setErrors } = useFormErrors('forgot_password');
 const [email] = defineField('email');
 
 const onSubmit = handleSubmit(async (values) => {
   const { error } = await useCustomFetch('/api/auth/forgot-password', {
+    errorKey: 'forgot_password',
     method: 'POST',
     body: values,
   });
 
-  if (error) {
-    setErrors(error);
-  } else {
+  if (!error.value) {
     toast.add({
       severity: 'success',
       summary: 'Votre demande a été prise en compte',

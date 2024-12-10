@@ -7,11 +7,9 @@ export const useAdminSearch = <
 >({
   url,
   filters,
-  client,
 }: {
   url: string;
   filters: Filters;
-  client?: boolean;
 }) => {
   const _filters = reactive<Filters>(filters) as Reactive<Filters>;
   const items = ref<Paginated<Item>>({ total: 0, items: [] }) as Ref<
@@ -25,7 +23,7 @@ export const useAdminSearch = <
       query: filters ?? _filters,
     });
 
-    items.value = data.value;
+    items.value = data.value!;
     isLoading.value = false;
   };
 

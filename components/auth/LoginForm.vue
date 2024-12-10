@@ -9,19 +9,17 @@ const { defineField, errors, handleSubmit } = useForm({
   validationSchema: toTypedSchema(authSchema.login),
 });
 
-const { setErrors } = useFormErrors('login');
 const [email] = defineField('email');
 const [password] = defineField('password');
 
 const onSubmit = handleSubmit(async (values) => {
   const { error } = await useCustomFetch('/api/auth/login', {
+    errorKey: 'login',
     method: 'POST',
     body: values,
   });
 
-  if (error) {
-    setErrors(error);
-  } else {
+  if (!error.value) {
     await navigateTo('/');
   }
 });

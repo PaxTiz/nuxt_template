@@ -21,10 +21,6 @@ export const handleFetchErrors = (error: MaybeRef<FetchError | null>) => {
     throw createError({ statusCode: 404, fatal: true });
   }
 
-  if (e.statusCode === 422) {
-    return;
-  }
-
   throw createError({ statusCode: 500, fatal: true });
 };
 

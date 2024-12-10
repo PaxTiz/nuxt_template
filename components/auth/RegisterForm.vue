@@ -12,7 +12,6 @@ const { defineField, errors, handleSubmit } = useForm({
 
 const toast = useToast();
 
-const { setErrors } = useFormErrors('register');
 const [firstname] = defineField('firstname');
 const [lastname] = defineField('lastname');
 const [email] = defineField('email');
@@ -25,13 +24,12 @@ const [addressPostalCode] = defineField('address.postalCode');
 
 const onSubmit = handleSubmit(async (values) => {
   const { error } = await useCustomFetch('/api/auth/register', {
+    errorKey: 'register',
     method: 'POST',
     body: values,
   });
 
-  if (error) {
-    setErrors(error);
-  } else {
+  if (!error.value) {
     toast.add({
       severity: 'success',
       summary: 'Votre compte a été crée',

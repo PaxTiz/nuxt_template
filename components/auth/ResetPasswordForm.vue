@@ -16,20 +16,18 @@ const { defineField, errors, handleSubmit } = useForm({
   initialValues: { token: route.query.token as string },
 });
 
-const { setErrors } = useFormErrors('reset_password');
 const [email] = defineField('email');
 const [password] = defineField('password');
 const [passwordConfirmation] = defineField('passwordConfirmation');
 
 const onSubmit = handleSubmit(async (values) => {
   const { error } = await useCustomFetch('/api/auth/reset-password', {
+    errorKey: 'reset_password',
     method: 'POST',
     body: values,
   });
 
-  if (error) {
-    setErrors(error);
-  } else {
+  if (!error.value) {
     toast.add({
       severity: 'success',
       summary: 'Votre mot de passe a bien été réinitialisé',

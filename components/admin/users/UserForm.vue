@@ -9,7 +9,6 @@ import { userRoles, usersSchema } from '~/types';
 const props = defineProps<{ user: User }>();
 
 const toast = useToast();
-const { setErrors, reset } = useFormErrors('user_form');
 const { errors, defineField, handleSubmit, isSubmitting } = useForm({
   validationSchema: toTypedSchema(usersSchema.update),
   initialValues: {
@@ -38,15 +37,13 @@ const [role] = defineField('role');
 const [isEnabled] = defineField('isEnabled');
 
 const onSubmit = handleSubmit(async (values) => {
-  reset();
   const { error } = await useCustomFetch(`/api/users/${props.user.id}`, {
+    errorKey: 'update_user_form',
     method: 'PATCH',
     body: values,
   });
 
-  if (error) {
-    setErrors(error);
-  } else {
+  if (!error.value) {
     toast.add({
       severity: 'success',
       summary: 'Action réussie',
@@ -61,7 +58,7 @@ const onSubmit = handleSubmit(async (values) => {
   <Card :pt="{ root: { class: 'shadow-none rounded-b-lg' } }">
     <template #content>
       <form id="update-user" method="post" @submit.prevent="onSubmit">
-        <AlertErrors for="user_form" />
+        <AlertErrors for="update_user_form" />
 
         <div class="flex gap-4 mb-6">
           <Field
