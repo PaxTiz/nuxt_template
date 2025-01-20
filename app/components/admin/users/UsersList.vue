@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import type { User } from '~/server/database';
-import type { Users } from '~/types';
+import type { User } from '~~/server/database';
+import type { Users } from '#shared/types';
 
 const activeAccountOptions = [
   { label: 'Tout', value: undefined },

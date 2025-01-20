@@ -1,7 +1,7 @@
 import { relations } from 'drizzle-orm';
 import { mysqlTable } from 'drizzle-orm/mysql-core';
 import { randomUUID } from 'node:crypto';
-import type { UserRole } from '~/types';
+import type { UserRole } from '#shared/types';
 import { passwordResets } from '.';
 
 export const users = mysqlTable('users', (t) => ({

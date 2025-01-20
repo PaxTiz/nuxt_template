@@ -1,5 +1,5 @@
-import { internal } from '~/server/lib/internal';
-import { usersSchema } from '~/types';
+import { internal } from '~~/server/lib/internal';
+import { usersSchema } from '#shared/types';
 
 export default eventHandler(async (event) => {
   await useUser(event, ['ADMIN', 'DEVELOPER']);

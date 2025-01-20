@@ -1,6 +1,6 @@
 import type { RuntimeConfig } from '@nuxt/schema';
 import { FetchError } from 'ofetch';
-import { type Database, useDatabase } from '~/server/database';
+import { type Database, useDatabase } from '~~/server/database';
 
 export abstract class Service {
   protected readonly config: RuntimeConfig;

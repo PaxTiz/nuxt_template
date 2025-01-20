@@ -3,7 +3,7 @@ import {
   constantsValidation,
   literalError,
   requiredErrorMessage,
-} from '~/types';
+} from '#shared/types';
 
 const registerSchema = z.object({
   firstname: z.string({ required_error: requiredErrorMessage }),

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { toTypedSchema } from '@vee-validate/zod';
 import { useForm } from 'vee-validate';
-import { authSchema } from '~/types';
+import { authSchema } from '#shared/types';
 
 const route = useRoute();
 if (!route.query.token) {

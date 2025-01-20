@@ -1,4 +1,4 @@
-import { type DatabaseJob } from '~/server/database';
+import { type DatabaseJob } from '~~/server/database';
 import { defineJob } from '..';
 
 export default defineJob({

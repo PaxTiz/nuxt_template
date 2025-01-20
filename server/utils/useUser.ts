@@ -1,6 +1,6 @@
 import { H3Event } from 'h3';
-import type { User } from '~/server/database';
-import type { UserRole } from '~/types';
+import type { User } from '~~/server/database';
+import type { UserRole } from '#shared/types';
 
 export const useUser = async (
   event: H3Event,

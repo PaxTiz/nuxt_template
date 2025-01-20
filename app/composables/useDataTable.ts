@@ -1,5 +1,5 @@
 import type { Reactive } from 'vue';
-import type { Paginated } from '~/types';
+import type { Paginated } from '#shared/types';
 
 export const useDataTable = async <
   Filters extends Record<string, unknown>,

@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { internal } from '~/server/lib/internal';
+import { internal } from '~~/server/lib/internal';
 
 const schema = z.object({
   collection: z.enum(['users']),

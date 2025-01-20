@@ -1,10 +1,14 @@
-import fr from './utils/primevue/locale.json';
+import fr from './app/utils/primevue/locale.json';
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2024-07-07',
 
   devtools: { enabled: true },
+
+  future: {
+    compatibilityVersion: 4,
+  },
 
   typescript: {
     strict: true,
@@ -60,21 +64,15 @@ export default defineNuxtConfig({
     },
   },
 
-  css: ['./assets/scss/app.scss'],
+  css: ['./assets/css/app.css'],
 
   modules: [
     'nuxt-auth-utils',
     '@primevue/nuxt-module',
     '@nuxtjs/tailwindcss',
     '@vueuse/nuxt',
-    'nuxt-gtag',
     '@nuxt/icon',
   ],
-
-  gtag: {
-    enabled: false,
-    id: 'ABCD',
-  },
 
   primevue: {
     options: { locale: { ...fr } },

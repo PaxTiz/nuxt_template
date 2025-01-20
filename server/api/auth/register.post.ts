@@ -1,5 +1,5 @@
-import { internal } from '~/server/lib/internal';
-import { authSchema } from '~/types';
+import { internal } from '~~/server/lib/internal';
+import { authSchema } from '#shared/types';
 
 export default eventHandler(async (event) => {
   const { body } = await useValidation(event, {

@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { Carousel } from '#components';
+
 const textEditorValue = ref('');
 
 const carouselItems = [

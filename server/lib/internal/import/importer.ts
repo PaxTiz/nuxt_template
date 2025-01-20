@@ -1,4 +1,4 @@
-import type { DataImporter as DataImporterType } from '~/types';
+import type { DataImporter as DataImporterType } from '#shared/types';
 import { Service } from '../../service';
 
 export default class DataImporter extends Service {

@@ -29,7 +29,6 @@ const state = reactive({
   canScrollRight: true,
 });
 
-const currentIndex = ref(0);
 const [emblaRef, api] = useEmblaCarousel({
   loop: props.loop,
   slidesToScroll: props.slidesToScroll,

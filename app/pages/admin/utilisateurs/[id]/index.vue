@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { User } from '~/server/database';
+import type { User } from '~~/server/database';
 
 definePageMeta({ layout: 'admin', middleware: 'admin' });
 

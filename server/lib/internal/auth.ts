@@ -1,9 +1,9 @@
 import { hash, verify } from 'argon2';
 import { and, eq } from 'drizzle-orm';
 import { H3Event } from 'h3';
-import { passwordResets, users } from '~/server/database';
-import { randomString } from '~/server/utils/strings';
-import type { Auth } from '~/types';
+import { passwordResets, users } from '~~/server/database';
+import { randomString } from '~~/server/utils/strings';
+import type { Auth } from '#shared/types';
 import { sendEmail } from '../email';
 import { Service } from '../service';
 

@@ -5,7 +5,7 @@ import {
   paginationSchema,
   requiredErrorMessage,
   userRoles,
-} from './shared';
+} from '#shared/types';
 
 export const usersSchema = {
   findOne: z.object({

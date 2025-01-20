@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { toTypedSchema } from '@vee-validate/zod';
 import { useForm } from 'vee-validate';
-import type { User } from '~/server/database';
-import { userRoles, usersSchema } from '~/types';
+import type { User } from '~~/server/database';
+import { userRoles, usersSchema } from '#shared/types';
 
 const props = defineProps<{ user: User }>();
 

@@ -1,6 +1,6 @@
 import { and, count, desc, eq, like, or, SQL } from 'drizzle-orm';
-import { type User, users } from '~/server/database';
-import type { Paginated, Users } from '~/types';
+import { type User, users } from '~~/server/database';
+import type { Paginated, Users } from '#shared/types';
 import { Service } from '../service';
 
 export default class UsersService extends Service {

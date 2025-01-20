@@ -1,4 +1,4 @@
-import type { DataImporter } from '~/types';
+import type { DataImporter } from '#shared/types';
 import { Service } from '../../service';
 
 export default class DataExtracter extends Service {
