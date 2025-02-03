@@ -1,3 +1,4 @@
+import { Cron } from 'croner';
 import { type Job, processJobs } from '../jobs';
 
 export default defineNitroPlugin(async () => {
@@ -5,9 +6,18 @@ export default defineNitroPlugin(async () => {
     await import('../jobs/handlers/say_hello').then((r) => r.default),
   ];
 
-  await processJobs(jobs);
+  for (const job of jobs) {
+    if (typeof job.runAt === 'number') {
+      setInterval(async () => {
+        await processJobs(jobs, job.name);
+        await new Promise((resolve) => setTimeout(resolve, 10 * 1000));
+      }, job.runAt * 1000);
+    } else {
+      new Cron(job.runAt, async () => {
+        await processJobs(jobs, job.name);
+      });
+    }
+  }
 
-  setInterval(async () => {
-    await processJobs(jobs);
-  }, 1000 * 60);
+  await processJobs(jobs);
 });

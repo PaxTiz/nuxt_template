@@ -1,15 +1,21 @@
-import { eq, or, sql } from 'drizzle-orm';
+import { and, eq, or, sql } from 'drizzle-orm';
 import { useDatabase } from '../database';
 import { type DatabaseJob, __jobs } from '../database/schema/__jobs';
 
 export type Job = {
   name: string;
+
+  /**
+   * Cron expression or duration in seconds
+   */
+  runAt: number | string;
+
   handler: (args: DatabaseJob) => Promise<void>;
 };
 
 export const defineJob = (job: Job) => job;
 
-export const addJob = async ({
+export const queueJob = async ({
   name,
   data,
   fatal,
@@ -29,37 +35,43 @@ export const addJob = async ({
   });
 };
 
-export const processJobs = async (
-  handlers: Array<{ name: string; handler: (args: any) => Promise<void> }>,
-) => {
+export const processJobs = async (handlers: Array<Job>, name?: string) => {
   const database = useDatabase();
   const jobs = await database.query.__jobs.findMany({
-    where: or(eq(__jobs.status, 'pending'), eq(__jobs.status, 'retry')),
+    where: and(
+      or(eq(__jobs.status, 'pending'), eq(__jobs.status, 'retry')),
+      name ? eq(__jobs.name, name) : undefined,
+    ),
   });
 
+  console.info(`[JOBS] ${jobs.length} jobs to process`);
+
   for (const job of jobs) {
+    console.info(`[JOBS] processing job ${job.name}`);
+
     const handler = handlers.find((handler) => handler.name === job.name);
     if (!handler) {
-      console.error(`[jobs] handler not found for job '${job.name}'`);
-      continue;
+      console.error(`[JOBS] handler not found for job '${job.name}'`);
+      return;
     }
 
     try {
       await handler.handler(job);
-      console.info(`[jobs] job '${job.name}' handled successfully`);
 
       await database
         .update(__jobs)
         .set({ status: 'success', processedAt: new Date() })
         .where(eq(__jobs.id, job.id));
+
+      console.info(`[JOBS] job '${job.name}' processed successfully`);
     } catch (e) {
-      console.error(`[jobs] job '${job.name}' failed`);
+      console.error(`[JOBS] job '${job.name}' failed`);
 
       if (job.fatal) {
         // TODO: Send error email
       }
 
-      if (job.currentRetries + 1 >= job.allowedRetries) {
+      if (job.fatal || job.currentRetries + 1 >= job.allowedRetries) {
         await database
           .update(__jobs)
           .set({

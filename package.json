@@ -24,6 +24,7 @@
     "@tiptap/vue-3": "^2.10.4",
     "@vee-validate/zod": "^4.14.7",
     "argon2": "^0.41.1",
+    "croner": "^9.0.0",
     "csv-stringify": "^6.5.2",
     "date-fns": "^4.1.0",
     "drizzle-orm": "^0.39.1",
