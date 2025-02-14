@@ -15,6 +15,13 @@
       "when": 1728418290407,
       "tag": "1728418290_create_jobs_table",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1739572361244,
+      "tag": "1739572361_create_medias_table",
+      "breakpoints": true
     }
   ]
 }

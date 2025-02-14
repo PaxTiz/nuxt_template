@@ -2,6 +2,7 @@ import AuthService from './auth';
 import ExporterService from './exports';
 import DataExtracter from './import/extracter';
 import DataImporter from './import/importer';
+import { MediasService } from './medias';
 import UsersService from './users';
 
 export const internal = {
@@ -14,4 +15,6 @@ export const internal = {
   extracter: new DataExtracter(),
 
   importer: new DataImporter(),
+
+  medias: new MediasService(),
 };
