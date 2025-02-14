@@ -203,4 +203,4 @@ const onSubmit = handleSubmit(async (values) => {
   </Card>
 </template>
 
-<style lang="scss" scoped></style>
+<style scoped></style>

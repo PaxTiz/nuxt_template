@@ -108,7 +108,7 @@ onBeforeUnmount(() => api.value?.destroy());
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .embla {
   margin: auto;
   --slide-spacing: v-bind(slidesGap);

@@ -34,4 +34,4 @@ const createdAt = formatDate(
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style scoped></style>

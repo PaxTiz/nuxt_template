@@ -25,7 +25,7 @@ import Sidebar from '~/components/admin/Sidebar.vue';
   </NuxtLayout>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .admin__layout {
   display: grid;
   grid-template-areas:

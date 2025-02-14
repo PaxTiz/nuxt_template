@@ -32,7 +32,7 @@ const isOpen = ref(props.defaultOpen);
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .toggleable__content {
   display: flex;
   flex-direction: column;
@@ -44,13 +44,12 @@ const isOpen = ref(props.defaultOpen);
   justify-content: space-between;
   margin: 0.25rem 0;
   cursor: pointer;
+}
 
-  span {
-    display: block;
-    font-size: 1rem;
-    font-weight: bold;
-    color: theme('colors.primary');
-    // text-transform: uppercase;
-  }
+.toggleable__content-header span {
+  display: block;
+  font-size: 1rem;
+  font-weight: bold;
+  color: theme('colors.primary');
 }
 </style>

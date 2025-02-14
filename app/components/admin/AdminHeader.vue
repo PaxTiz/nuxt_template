@@ -65,7 +65,7 @@ defineSlots<{
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .admin-header {
   background-color: #fff;
   border-radius: theme('borderRadius.lg');
@@ -87,16 +87,16 @@ defineSlots<{
   margin-bottom: 0.5rem;
   font-size: 0.8rem;
 
-  & > * {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    text-decoration: none;
-    color: theme('colors.gray.600');
-  }
   & > a:hover {
     color: #000;
   }
+}
+.admin-header__breadcrumb > a:hover {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: theme('colors.gray.600');
 }
 
 .admin-header__title {
@@ -121,23 +121,22 @@ defineSlots<{
   border-top-left-radius: theme('borderRadius.lg');
   border-top-right-radius: theme('borderRadius.lg');
   padding: 0 theme('margin.4');
+}
 
-  button {
-    padding: theme('padding.3') theme('padding.6');
-    background-color: transparent;
-    border: 2px solid transparent;
-    cursor: pointer;
-    color: theme('colors.gray.600');
-    font-size: 1rem;
+.admin-header__tabs button {
+  padding: theme('padding.3') theme('padding.6');
+  background-color: transparent;
+  border: 2px solid transparent;
+  cursor: pointer;
+  color: theme('colors.gray.600');
+  font-size: 1rem;
+}
 
-    &:hover {
-      background-color: theme('backgroundColor.blue.50');
-    }
-
-    &.active {
-      color: theme('colors.primary');
-      border-bottom-color: theme('borderColor.primary');
-    }
-  }
+.admin-header__tabs button:hover {
+  background-color: theme('backgroundColor.blue.50');
+}
+.admin-header__tabs button.active {
+  color: theme('colors.primary');
+  border-bottom-color: theme('borderColor.primary');
 }
 </style>

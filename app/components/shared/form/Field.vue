@@ -69,16 +69,15 @@ const needHelp = computed(() => props.helpMessage || slots.help);
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .form-group {
   position: relative;
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
   width: 100%;
-
-  label {
-    font-weight: 600;
-  }
+}
+.form-group label {
+  font-weight: 600;
 }
 </style>

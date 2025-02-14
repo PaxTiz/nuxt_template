@@ -151,7 +151,7 @@ const onReset = () => {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .data-importer__header {
   display: flex;
   justify-content: space-between;

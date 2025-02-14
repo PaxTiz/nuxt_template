@@ -50,7 +50,7 @@ const back = () => {
   </NuxtLayout>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 pre {
   background: #f4f4f4;
   border: 1px solid #ddd;

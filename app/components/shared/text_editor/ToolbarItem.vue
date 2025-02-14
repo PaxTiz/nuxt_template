@@ -19,7 +19,7 @@ defineEmits<{ (e: 'click'): void }>();
   </button>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .editor__toolbar-button {
   display: grid;
   place-items: center;
@@ -28,10 +28,10 @@ defineEmits<{ (e: 'click'): void }>();
   background-color: theme('backgroundColor.white');
   border: 1px solid theme('colors.gray.300');
   cursor: pointer;
+}
 
-  &.active {
-    color: theme('colors.primary');
-    background-color: theme('backgroundColor.blue.100');
-  }
+.editor__toolbar-button.active {
+  color: theme('colors.primary');
+  background-color: theme('backgroundColor.blue.100');
 }
 </style>

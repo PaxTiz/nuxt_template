@@ -92,7 +92,7 @@ const onLogout = async () => {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .sidebar {
   display: flex;
   flex-direction: column;

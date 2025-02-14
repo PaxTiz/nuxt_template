@@ -68,12 +68,12 @@ const onFilesSelected = (files: Array<File>) => {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .components {
   margin: 4rem;
+}
 
-  :deep(.p-card) {
-    margin-bottom: 2rem;
-  }
+.components :deep(.p-card) {
+  margin-bottom: 2rem;
 }
 </style>

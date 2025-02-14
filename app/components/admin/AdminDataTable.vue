@@ -69,7 +69,7 @@ const onPaginate = (event: DataTablePageEvent) => {
   </Card>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .listing-header {
   display: grid;
   gap: 1rem;
@@ -81,17 +81,17 @@ const onPaginate = (event: DataTablePageEvent) => {
   margin: 1rem 0;
   display: flex;
   align-items: center;
+}
 
-  > * {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-  }
+.listing-divider > * {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
 
-  :deep(.p-divider) {
-    height: 1px;
-    margin: 0;
-  }
+.listing-divider :deep(.p-divider) {
+  height: 1px;
+  margin: 0;
 }
 </style>

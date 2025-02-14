@@ -14,7 +14,7 @@ defineProps<{
   </router-link>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .sidebar__link {
   display: flex;
   align-items: center;
@@ -23,10 +23,10 @@ defineProps<{
   text-decoration: none;
   padding: 0.5rem 0;
   font-size: 0.9rem;
+}
 
-  &:hover,
-  &.active {
-    color: theme('colors.primary');
-  }
+.sidebar__link:hover,
+.sidebar__link.active {
+  color: theme('colors.primary');
 }
 </style>

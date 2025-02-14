@@ -112,7 +112,7 @@ const { isOverDropZone } = useDropZone(dropzoneRef, {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .dropzone {
   display: flex;
   justify-content: center;

@@ -269,7 +269,7 @@ onBeforeUnmount(() => {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .editor {
   border: 1px solid theme('borderColor.gray.300');
   border-radius: theme('borderRadius.DEFAULT');
@@ -283,26 +283,22 @@ onBeforeUnmount(() => {
   border-bottom: 1px solid theme('borderColor.gray.300');
   background-color: theme('backgroundColor.gray.50');
   padding: theme('padding.2');
-
-  &-group {
-    display: flex;
-    align-items: center;
-  }
+}
+.editor .editor__toolbar-group {
+  display: flex;
+  align-items: center;
 }
 
-.editor__toolbar-group .editor__toolbar-button {
-  &:first-child {
-    border-top-left-radius: theme('borderRadius.DEFAULT');
-    border-bottom-left-radius: theme('borderRadius.DEFAULT');
-  }
-  &:last-child {
-    border-top-right-radius: theme('borderRadius.DEFAULT');
-    border-bottom-right-radius: theme('borderRadius.DEFAULT');
-  }
-
-  &:not(:last-child) {
-    border-right: none;
-  }
+.editor__toolbar-group .editor__toolbar-button:first-child {
+  border-top-left-radius: theme('borderRadius.DEFAULT');
+  border-bottom-left-radius: theme('borderRadius.DEFAULT');
+}
+.editor__toolbar-group .editor__toolbar-button:last-child {
+  border-top-right-radius: theme('borderRadius.DEFAULT');
+  border-bottom-right-radius: theme('borderRadius.DEFAULT');
+}
+.editor__toolbar-group .editor__toolbar-button::not(last-child) {
+  border-right: none;
 }
 
 .editor__toolbar-button {
@@ -313,19 +309,17 @@ onBeforeUnmount(() => {
   background-color: theme('backgroundColor.white');
   border: 1px solid theme('colors.gray.300');
   cursor: pointer;
-
-  &.active {
-    color: theme('colors.primary');
-    background-color: theme('backgroundColor.blue.100');
-  }
+}
+.editor__toolbar-button.active {
+  color: theme('colors.primary');
+  background-color: theme('backgroundColor.blue.100');
 }
 
 .editor .editor__content {
   padding: theme('padding.2');
-
-  :deep(a) {
-    color: theme('colors.primary');
-    text-decoration: underline;
-  }
+}
+.editor .editor__content :deep(a) {
+  color: theme('colors.primary');
+  text-decoration: underline;
 }
 </style>
