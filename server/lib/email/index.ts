@@ -31,7 +31,10 @@ const edge = Edge.create({
 edge.mount(join(process.cwd(), './server/lib/email/templates'));
 
 export const sendEmail = async (data: Email) => {
+  const logger = useLogger('email');
+
   if (!config.email.enabled) {
+    logger.info('email not enabled');
     return Promise.resolve();
   }
 
@@ -41,12 +44,19 @@ export const sendEmail = async (data: Email) => {
     applicationName: config.public.applicationName,
   });
 
-  return await transport.sendMail({
-    to: data.to,
-    subject: data.subject,
-    bcc: data.pragmeaHiddenCopy ? 'contact@pragmea.fr' : undefined,
-    replyTo: data.replyTo,
-    html: htmlContent,
-    from,
-  });
+  try {
+    return await transport.sendMail({
+      to: data.to,
+      subject: data.subject,
+      bcc: data.pragmeaHiddenCopy ? 'contact@pragmea.fr' : undefined,
+      replyTo: data.replyTo,
+      html: htmlContent,
+      from,
+    });
+  } catch (error) {
+    logger.error(error);
+
+    // Email failures are not a fatal error, don't throw an exception if not sent
+    return Promise.resolve();
+  }
 };

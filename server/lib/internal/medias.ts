@@ -95,6 +95,8 @@ export class MediasService extends Service {
     path: string,
     modifiers?: Modifiers,
   ): Promise<Buffer | null> {
+    const logger = useLogger('medias:download');
+
     path = join('/', path);
 
     const isImage = this.isImage(path);
@@ -139,8 +141,8 @@ export class MediasService extends Service {
       });
 
       return buffer;
-    } catch (e) {
-      console.error(`[medias][get] failed to read file: ${path}`, e);
+    } catch (error) {
+      logger.error(error);
       return null;
     }
   }

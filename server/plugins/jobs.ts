@@ -1,18 +1,30 @@
 import { Cron } from 'croner';
 import { type Job, processJobs } from '../jobs';
+import { useLogger } from '../utils/useLogger';
 
 export default defineNitroPlugin(async () => {
+  const logger = useLogger('JOBS');
+
+  const config = useRuntimeConfig();
+  if (!config.jobs.enabled) {
+    logger.info('jobs are not enabled');
+    return;
+  }
+
   const jobs: Array<Job> = [
     await import('../jobs/handlers/say_hello').then((r) => r.default),
   ];
 
   for (const job of jobs) {
     if (typeof job.runAt === 'number') {
-      setInterval(async () => {
-        await processJobs(jobs, job.name);
-        await new Promise((resolve) => setTimeout(resolve, 10 * 1000));
-      }, job.runAt * 1000);
+      logger.info(`job '%s' configured to run every %ds`, job.name, job.runAt);
+      setInterval(
+        async () => await processJobs(jobs, job.name),
+        job.runAt * 1000,
+      );
     } else {
+      logger.info(`job '%s' configured to run at '%s'`, job.name, job.runAt);
+
       new Cron(job.runAt, async () => {
         await processJobs(jobs, job.name);
       });

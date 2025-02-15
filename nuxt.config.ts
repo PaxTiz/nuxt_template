@@ -52,6 +52,10 @@ export default defineNuxtConfig({
       name: process.env.NUXT_DATABASE_NAME,
     },
 
+    jobs: {
+      enabled: process.env.NUXT_JOBS_ENABLED === 'true',
+    },
+
     email: {
       enabled: process.env.NUXT_EMAIL_ENABLED === 'true',
       host: process.env.NUXT_EMAIL_SMTP_HOST,
