@@ -1,9 +1,9 @@
+import type { Auth } from '#shared/types';
 import { hash, verify } from 'argon2';
 import { and, eq } from 'drizzle-orm';
 import { H3Event } from 'h3';
 import { passwordResets, users } from '~~/server/database';
 import { randomString } from '~~/server/utils/strings';
-import type { Auth } from '#shared/types';
 import { sendEmail } from '../email';
 import { Service } from '../service';
 
@@ -25,6 +25,11 @@ export default class AuthService extends Service {
     if (!user.isEnabled) {
       throw createFormError({ key: 'email', message: 'account_not_enabled' });
     }
+
+    await this.database
+      .update(users)
+      .set({ lastLoginAt: new Date() })
+      .where(eq(users.id, user.id));
 
     const { password, validationCode, ...sessionUser } = user;
     await replaceUserSession(event, { user: sessionUser });
