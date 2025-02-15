@@ -22,6 +22,13 @@
       "when": 1739572361244,
       "tag": "1739572361_create_medias_table",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1739577498351,
+      "tag": "1739577498_add_last_login_at_on_users",
+      "breakpoints": true
     }
   ]
 }

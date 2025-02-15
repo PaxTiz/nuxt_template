@@ -23,12 +23,7 @@ const onPaginate = (event: DataTablePageEvent) => {
 </script>
 
 <template>
-  <Card
-    :pt="{
-      root: { class: 'shadow-none rounded-lg' },
-      body: { class: 'p-0' },
-    }"
-  >
+  <Card :pt="{ body: { class: 'p-0' }, root: { class: 'rounded' } }">
     <template #content>
       <div
         class="listing-header px-4 pt-4"

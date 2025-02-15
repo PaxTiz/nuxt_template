@@ -44,6 +44,12 @@ const onLogout = async () => {
     <div class="sidebar__body">
       <template v-for="item in sidebar" :key="item.text">
         <ToggleableContent v-if="item.parent" :header="item.text" class="my-4">
+          <template #header>
+            <span class="text-xs uppercase">
+              {{ item.text }}
+            </span>
+          </template>
+
           <SidebarLink
             v-for="child in item.children"
             :key="child.text"
@@ -101,11 +107,11 @@ const onLogout = async () => {
 }
 
 .sidebar__body {
-  padding: theme('padding.6');
+  padding: theme('padding.4');
 }
 
 .sidebar__end {
-  padding: theme('padding.6');
+  padding: theme('padding.4');
 }
 
 .sidebar__end-user {

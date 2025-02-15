@@ -34,7 +34,7 @@ import Sidebar from '~/components/admin/Sidebar.vue';
   grid-template-columns: 300px 1fr;
   grid-template-rows: auto 1fr;
   min-height: 100vh;
-  background-color: theme('backgroundColor.gray.50');
+  background: var(--admin-background);
 }
 
 .admin__layout-logo {

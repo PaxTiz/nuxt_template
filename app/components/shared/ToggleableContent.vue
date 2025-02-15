@@ -50,6 +50,7 @@ const isOpen = ref(props.defaultOpen);
   display: block;
   font-size: 1rem;
   font-weight: bold;
-  color: theme('colors.primary');
+  color: theme('colors.gray.500');
+  fill: theme('colors.gray.500');
 }
 </style>

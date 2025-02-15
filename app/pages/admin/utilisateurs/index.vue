@@ -8,6 +8,9 @@ definePageMeta({ layout: 'admin', middleware: 'admin' });
     :breadcrumb="[
       {
         label: 'Utilisateurs',
+      },
+      {
+        label: 'Liste des utilisateurs',
         url: '/utilisateurs',
       },
     ]"
@@ -23,9 +26,7 @@ definePageMeta({ layout: 'admin', middleware: 'admin' });
     </template>
   </AdminHeader>
 
-  <div class="border border-solid border-gray-200 rounded-lg">
-    <UsersList />
-  </div>
+  <UsersList />
 </template>
 
 <style scoped></style>

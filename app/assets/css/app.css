@@ -1,15 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
 
 :root {
   --primary-color: var(--p-primary-color);
+
+  --admin-background: linear-gradient(
+    180deg,
+    #e0e7f5 0%,
+    rgba(170, 194, 239, 0.06) 111.26%
+  );
 }
 
 * {
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Figtree', sans-serif;
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
   padding: 0;
+}
+
+.admin__layout .form-group label {
+  color: theme('colors.gray.500');
+  font-weight: 500 !important;
+  font-size: 0.9rem;
 }

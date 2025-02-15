@@ -1,14 +1,9 @@
 <script lang="ts" setup>
 import type { VNode } from 'vue';
-import type { Tab } from '~/composables/useAdminTabHeader';
-
-const modelValue = defineModel<string>('tab');
 
 defineProps<{
   title: string;
-  subtitle?: string;
   breadcrumb?: Array<{ label: string; url?: string }>;
-  tabs?: Array<Tab>;
 }>();
 defineSlots<{
   actions?: () => VNode;
@@ -16,16 +11,19 @@ defineSlots<{
 </script>
 
 <template>
-  <div class="admin-header" :class="{ 'with-tabs': tabs && tabs.length > 0 }">
+  <div class="admin-header">
     <div class="admin-header__content">
       <div class="admin-header__inner">
         <div v-if="breadcrumb" class="admin-header__breadcrumb">
           <router-link to="/admin">
-            <Icon name="lucide:home" />
-            <span>Accueil</span>
+            <Icon
+              name="lucide:chevron-left"
+              class="text-2xl"
+              style="margin-top: 4px"
+            />
           </router-link>
 
-          <Icon name="lucide:chevron-right" />
+          <div class="mx-2 text-gray-400">|</div>
 
           <template v-for="(item, index) in breadcrumb" :key="item.label">
             <router-link v-if="item.url" :to="`/admin${item.url}`">
@@ -39,12 +37,6 @@ defineSlots<{
             />
           </template>
         </div>
-
-        <h1 class="admin-header__title">
-          <!-- <Icon :name="`lucide:${icon}`" /> -->
-          <span>{{ title }}</span>
-        </h1>
-        <p v-if="subtitle" class="text-gray-600 mt-2 mb-0">{{ subtitle }}</p>
       </div>
 
       <div v-if="$slots.actions" class="admin-header__actions">
@@ -52,25 +44,10 @@ defineSlots<{
       </div>
     </div>
   </div>
-
-  <div v-if="tabs && tabs.length > 0" class="admin-header__tabs">
-    <button
-      v-for="tab in tabs"
-      :key="tab.key"
-      :class="{ active: tab.key === modelValue }"
-      @click="() => (modelValue = tab.key)"
-    >
-      {{ tab.label }}
-    </button>
-  </div>
 </template>
 
 <style scoped>
 .admin-header {
-  background-color: #fff;
-  border-radius: theme('borderRadius.lg');
-  border: 1px solid theme('borderColor.gray.200');
-  padding: theme('padding.4') theme('padding.8');
   margin-bottom: theme('margin.4');
 }
 
@@ -84,59 +61,23 @@ defineSlots<{
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  margin-bottom: 0.5rem;
   font-size: 0.8rem;
-
-  & > a:hover {
-    color: #000;
-  }
+}
+.admin-header__breadcrumb > a,
+.admin-header__breadcrumb > span {
+  font-size: 1rem;
+  font-weight: 500;
+  color: theme('colors.gray.500');
+  text-decoration: none;
 }
 .admin-header__breadcrumb > a:hover {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  text-decoration: none;
   color: theme('colors.gray.600');
-}
-
-.admin-header__title {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin: 0;
-  color: theme('colors.primary');
+  font-weight: 600;
 }
 
 .admin-header__actions {
   display: flex;
   align-items: center;
   gap: 1rem;
-}
-
-.admin-header__tabs {
-  background-color: #fff;
-  border-top: 1px solid theme('borderColor.gray.200');
-  border-left: 1px solid theme('borderColor.gray.200');
-  border-right: 1px solid theme('borderColor.gray.200');
-  border-top-left-radius: theme('borderRadius.lg');
-  border-top-right-radius: theme('borderRadius.lg');
-  padding: 0 theme('margin.4');
-}
-
-.admin-header__tabs button {
-  padding: theme('padding.3') theme('padding.6');
-  background-color: transparent;
-  border: 2px solid transparent;
-  cursor: pointer;
-  color: theme('colors.gray.600');
-  font-size: 1rem;
-}
-
-.admin-header__tabs button:hover {
-  background-color: theme('backgroundColor.blue.50');
-}
-.admin-header__tabs button.active {
-  color: theme('colors.primary');
-  border-bottom-color: theme('borderColor.primary');
 }
 </style>
