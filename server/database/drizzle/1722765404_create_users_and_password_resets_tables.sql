@@ -13,7 +13,7 @@ CREATE TABLE `users` (
 	`password` varchar(191) NOT NULL,
 	`address_line1` varchar(191) NOT NULL,
 	`address_line2` varchar(191),
-	`address_postal_code` varchar(5),
+	`address_postal_code` varchar(5) NOT NULL,
 	`address_city` varchar(191) NOT NULL,
 	`is_enabled` boolean NOT NULL DEFAULT false,
 	`validation_code` varchar(16),
