@@ -1,10 +1,9 @@
 <script lang="ts" setup>
+import { userRoles, usersSchema, type UserResource } from '#shared/types';
 import { toTypedSchema } from '@vee-validate/zod';
 import { useForm } from 'vee-validate';
-import type { User } from '~~/server/database';
-import { userRoles, usersSchema } from '#shared/types';
 
-const props = defineProps<{ user: User }>();
+const props = defineProps<{ user: UserResource }>();
 
 const toast = useToast();
 const { errors, defineField, handleSubmit, isSubmitting } = useForm({
@@ -14,10 +13,10 @@ const { errors, defineField, handleSubmit, isSubmitting } = useForm({
     lastname: props.user.lastname,
     email: props.user.email,
     address: {
-      line1: props.user.addressLine1,
-      line2: props.user.addressLine2,
-      postalCode: props.user.addressPostalCode ?? undefined,
-      city: props.user.addressCity,
+      line1: props.user.address.line1,
+      line2: props.user.address.line2,
+      postalCode: props.user.address.postalCode,
+      city: props.user.address.city,
     },
     isEnabled: props.user.isEnabled,
     role: props.user.role,

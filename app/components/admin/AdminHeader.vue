@@ -69,10 +69,13 @@ defineSlots<{
   font-weight: 500;
   color: theme('colors.gray.500');
   text-decoration: none;
+  border-bottom: 1px solid transparent;
 }
 .admin-header__breadcrumb > a:hover {
-  color: theme('colors.gray.600');
-  font-weight: 600;
+  color: theme('colors.gray.900');
+}
+.admin-header__breadcrumb > a:not(:first-child):hover {
+  border-color: theme('colors.gray.900');
 }
 
 .admin-header__actions {

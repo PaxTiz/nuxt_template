@@ -37,11 +37,11 @@ const onSelectFile = () => {
 
 const onFileSelected = async (event: Event) => {
   const files = (event.target as HTMLInputElement)?.files;
-  if (!files) {
+  if (!files || files.length === 0) {
     return;
   }
 
-  const singleFile = files[0];
+  const singleFile = files[0]!;
   const base64 = await toBase64(singleFile);
   file.value = {
     src: base64,

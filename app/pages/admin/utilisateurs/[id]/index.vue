@@ -1,11 +1,13 @@
 <script lang="ts" setup>
-import type { User } from '~~/server/database';
+import { type UserResource } from '#shared/types';
 import UserKeyDetails from '~/components/admin/users/UserKeyDetails.vue';
 
 definePageMeta({ layout: 'admin', middleware: 'admin' });
 
 const route = useRoute();
-const { data } = await useCustomFetch<User>(`/api/users/${route.params.id}`);
+const { data } = await useCustomFetch<UserResource>(
+  `/api/users/${route.params.id}`,
+);
 </script>
 
 <template>
@@ -17,13 +19,21 @@ const { data } = await useCustomFetch<User>(`/api/users/${route.params.id}`);
     ]"
   />
 
-  <UserKeyDetails :user="data" />
+  <UserKeyDetails :user="data!" />
 
-  <TabView>
-    <TabPanel header="Modifier">
-      <UserForm :user="data" />
+  <Tabs value="0">
+    <TabList>
+      <Tab value="0">Modifier</Tab>
+    </TabList>
+
+    <TabPanel value="0">
+      <Card :pt="{ root: { class: 'p-0 rounded-t-none rounded-b' } }">
+        <template #content>
+          <UserForm :user="data!" />
+        </template>
+      </Card>
     </TabPanel>
-  </TabView>
+  </Tabs>
 </template>
 
 <style scoped></style>

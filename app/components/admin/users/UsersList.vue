@@ -1,6 +1,5 @@
 <script lang="ts" setup>
-import type { Users } from '#shared/types';
-import type { User } from '~~/server/database';
+import type { UserResource, Users } from '#shared/types';
 
 const activeAccountOptions = [
   { label: 'Tout', value: undefined },
@@ -8,7 +7,10 @@ const activeAccountOptions = [
   { label: 'Non', value: false },
 ];
 
-const { items, filters, pending } = await useDataTable<Users['Search'], User>({
+const { items, filters, pending } = await useDataTable<
+  Users['Search'],
+  UserResource
+>({
   url: '/api/users',
   filters: {
     page: 1,
@@ -52,7 +54,7 @@ const { items, filters, pending } = await useDataTable<Users['Search'], User>({
     <Column field="email" header="Email" />
 
     <Column header="Compte activé ?">
-      <template #body="{ data }: { data: User }">
+      <template #body="{ data }: { data: UserResource }">
         <Tag
           :severity="data.isEnabled ? 'success' : 'danger'"
           :value="data.isEnabled ? 'Oui' : 'Non'"
@@ -61,7 +63,7 @@ const { items, filters, pending } = await useDataTable<Users['Search'], User>({
     </Column>
 
     <Column field="role" header="Role">
-      <template #body="{ data }: { data: User }">
+      <template #body="{ data }: { data: UserResource }">
         <Tag
           :severity="
             data.role === 'USER'
@@ -76,7 +78,7 @@ const { items, filters, pending } = await useDataTable<Users['Search'], User>({
     </Column>
 
     <Column>
-      <template #body="{ data }: { data: User }">
+      <template #body="{ data }: { data: UserResource }">
         <router-link :to="`/admin/utilisateurs/${data.id}`">
           <Button label="Voir" text>
             <template #icon>

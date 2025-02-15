@@ -19,14 +19,16 @@ defineProps<{
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: theme('colors.gray.600');
+  color: theme('colors.gray.500');
   text-decoration: none;
-  padding: 0.5rem 0;
+  padding: 0.25rem 0;
+  margin: 0.25rem 0;
   font-size: 0.9rem;
 }
 
 .sidebar__link:hover,
 .sidebar__link.active {
-  color: theme('colors.primary');
+  color: theme('colors.gray.900');
+  font-weight: 500;
 }
 </style>

@@ -1,11 +1,10 @@
+import type { UserResource, UserRole } from '#shared/types';
 import { H3Event } from 'h3';
-import type { User } from '~~/server/database';
-import type { UserRole } from '#shared/types';
 
 export const useUser = async (
   event: H3Event,
   allowedRoles?: Array<UserRole>,
-): Promise<User> => {
+): Promise<UserResource> => {
   const session = await requireUserSession(event);
   const user = session.user;
 

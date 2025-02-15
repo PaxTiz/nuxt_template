@@ -1,17 +1,38 @@
+import type { Paginated, UserResource, Users } from '#shared/types';
 import { and, count, desc, eq, like, or, SQL } from 'drizzle-orm';
-import { type User, users } from '~~/server/database';
-import type { Paginated, Users } from '#shared/types';
+import { users } from '~~/server/database';
 import { Service } from '../service';
 
 export default class UsersService extends Service {
-  async findById(id: string) {
-    return this.database.query.users.findFirst({
+  async findById(id: string): Promise<UserResource | null> {
+    const user = await this.database.query.users.findFirst({
       columns: {
         password: false,
         validationCode: false,
       },
       where: eq(users.id, id),
     });
+
+    if (!user) {
+      return null;
+    }
+
+    return {
+      id: user.id,
+      firstname: user.firstname,
+      lastname: user.lastname,
+      email: user.email,
+      isEnabled: user.isEnabled,
+      role: user.role,
+      address: {
+        line1: user.addressLine1,
+        line2: user.addressLine2,
+        postalCode: user.addressPostalCode,
+        city: user.addressCity,
+      },
+      createdAt: user.createdAt,
+      lastLoginAt: user.lastLoginAt,
+    };
   }
 
   async update(id: string, body: Users['Update']) {
@@ -35,7 +56,7 @@ export default class UsersService extends Service {
     }
   }
 
-  async search(query: Users['Search']): Promise<Paginated<User>> {
+  async search(query: Users['Search']): Promise<Paginated<UserResource>> {
     const conditions: Array<SQL | undefined> = [];
     if (query.isEnabled !== undefined) {
       conditions.push(eq(users.isEnabled, query.isEnabled));
@@ -58,19 +79,7 @@ export default class UsersService extends Service {
       .limit(1);
 
     const usersList = await this.database
-      .select({
-        id: users.id,
-        firstname: users.firstname,
-        lastname: users.lastname,
-        email: users.email,
-        addressLine1: users.addressLine1,
-        addressLine2: users.addressLine2,
-        addressPostalCode: users.addressPostalCode,
-        addressCity: users.addressCity,
-        isEnabled: users.isEnabled,
-        role: users.role,
-        createdAt: users.createdAt,
-      })
+      .select()
       .from(users)
       .where(conditionsGroup)
       .orderBy(desc(users.isEnabled), desc(users.role))
@@ -78,8 +87,23 @@ export default class UsersService extends Service {
       .limit(query.perPage);
 
     return {
-      total: total[0].count,
-      items: usersList,
+      total: total[0]!.count,
+      items: usersList.map((user) => ({
+        id: user.id,
+        firstname: user.firstname,
+        lastname: user.lastname,
+        email: user.email,
+        isEnabled: user.isEnabled,
+        role: user.role,
+        address: {
+          line1: user.addressLine1,
+          line2: user.addressLine2,
+          postalCode: user.addressPostalCode,
+          city: user.addressCity,
+        },
+        createdAt: user.createdAt,
+        lastLoginAt: user.lastLoginAt,
+      })),
     };
   }
 }

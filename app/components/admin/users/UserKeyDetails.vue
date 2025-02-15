@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import type { User } from '~~/server/database';
+import { type UserResource } from '#shared/types';
 
-const props = defineProps<{ user: User }>();
+const props = defineProps<{ user: UserResource }>();
 
 const { formatDatetime } = useFormatter();
 const createdAt = formatDatetime(props.user.createdAt);

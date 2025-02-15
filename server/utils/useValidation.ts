@@ -50,7 +50,7 @@ const asyncReduce = async <T, U>(
   let accumulator = initialValue;
 
   for (let i = 0; i < array.length; i++) {
-    accumulator = await asyncCallback(accumulator, array[i], i, array);
+    accumulator = await asyncCallback(accumulator, array[i]!, i, array);
   }
 
   return accumulator;

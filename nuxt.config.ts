@@ -13,8 +13,7 @@ export default defineNuxtConfig({
   typescript: {
     strict: true,
 
-    // TODO: Enable back type checking (https://github.com/atinux/nuxt-auth-utils/issues/191)
-    typeCheck: false,
+    typeCheck: true,
   },
 
   components: [
@@ -95,6 +94,10 @@ export default defineNuxtConfig({
         'DataTable',
         'Column',
         'Row',
+        'Tab',
+        'Tabs',
+        'TabList',
+        'TabPanel',
       ],
     },
   },

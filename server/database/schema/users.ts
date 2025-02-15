@@ -16,7 +16,7 @@ export const users = mysqlTable('users', (t) => ({
   password: t.varchar('password', { length: 191 }).notNull(),
   addressLine1: t.varchar('address_line1', { length: 191 }).notNull(),
   addressLine2: t.varchar('address_line2', { length: 191 }),
-  addressPostalCode: t.varchar('address_postal_code', { length: 5 }),
+  addressPostalCode: t.varchar('address_postal_code', { length: 5 }).notNull(),
   addressCity: t.varchar('address_city', { length: 191 }).notNull(),
   isEnabled: t.boolean('is_enabled').notNull().default(false),
   validationCode: t.varchar('validation_code', { length: 16 }).unique(),
@@ -38,6 +38,3 @@ export const users = mysqlTable('users', (t) => ({
 export const userRelations = relations(users, ({ many }) => ({
   passwordReset: many(passwordResets),
 }));
-
-export type FullUser = typeof users.$inferSelect;
-export type User = Omit<FullUser, 'password' | 'validationCode'>;

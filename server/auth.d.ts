@@ -1,11 +1,9 @@
-import type { User as DatabaseUser } from "./database";
+import { UserResource } from '~~/shared/types';
 
 declare module '#auth-utils' {
-    interface User extends DatabaseUser {}
-  
-    interface UserSession {
-      // Add your own fields
-    }
-  }
-  
-  export { };
+  interface User extends UserResource {}
+
+  interface UserSession {}
+}
+
+export {};

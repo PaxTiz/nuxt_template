@@ -45,7 +45,7 @@ const onLogout = async () => {
       <template v-for="item in sidebar" :key="item.text">
         <ToggleableContent v-if="item.parent" :header="item.text" class="my-4">
           <template #header>
-            <span class="text-xs uppercase">
+            <span class="text-xs text-gray-500 font-bold uppercase">
               {{ item.text }}
             </span>
           </template>
@@ -119,7 +119,7 @@ const onLogout = async () => {
   justify-content: space-between;
   align-items: center;
   font-weight: 500;
-  color: theme('colors.gray.600');
+  color: theme('colors.gray.500');
   font-size: 0.9rem;
 }
 </style>

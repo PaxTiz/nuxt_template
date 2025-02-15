@@ -14,7 +14,7 @@ export default defineEventHandler(async (event) => {
     query: schema,
   });
 
-  const path = event.context.params!.path;
+  const path = event.context.params!.path!;
   const file = await internal.medias.download(path, {
     width: query.width,
     height: query.height,

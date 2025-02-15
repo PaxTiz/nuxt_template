@@ -229,8 +229,6 @@ export class MediasService extends Service {
     path: string,
     modifiersKey: string | null,
   ): Promise<Media | null> {
-    console.log({ path, modifiersKey });
-
     let file: Array<Media> | null = null;
     if (modifiersKey) {
       const queryWithoutModifiers = this.database
@@ -265,6 +263,6 @@ export class MediasService extends Service {
         .limit(1);
     }
 
-    return file && file.length === 1 ? file[0] : null;
+    return file && file.length === 1 ? file[0]! : null;
   }
 }

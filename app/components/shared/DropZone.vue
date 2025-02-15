@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import {
   mimeTypes as allMimeTypes,
-  toBase64,
   isImageMimeType,
+  toBase64,
 } from '~/utils/shared/files';
 
 type FileWithPreview = { file: File; preview?: string };
@@ -28,7 +28,7 @@ const manualFilesRef = useTemplateRef<HTMLDivElement>('manualFilesRef');
 const onFilesSelected = async (files: Array<File> | null) => {
   const newFiles: Array<FileWithPreview> = (
     files ? (multiple ? files : [files[0]]) : []
-  ).map((f) => ({ file: f }));
+  ).map((f) => ({ file: f! }));
 
   const allFiles = multiple ? [...selectedFiles.value, ...newFiles] : newFiles;
   emit(

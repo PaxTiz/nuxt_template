@@ -1,6 +1,6 @@
 <script lang="ts" generic="T extends Record<string, unknown>" setup>
-import type { FileUploadSelectEvent } from 'primevue/fileupload';
 import type { DataImporter } from '#shared/types';
+import type { FileUploadSelectEvent } from 'primevue/fileupload';
 import { mimeTypes } from '~/utils/shared/files';
 
 const props = withDefaults(
@@ -139,7 +139,7 @@ const onReset = () => {
             :value="previewLimit ? items.slice(0, previewLimit) : items"
           >
             <Column
-              v-for="key in Object.keys(items[0])"
+              v-for="key in Object.keys(items[0]!)"
               :key="key"
               :field="key"
               :header="key"

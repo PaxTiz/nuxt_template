@@ -31,8 +31,24 @@ export default class AuthService extends Service {
       .set({ lastLoginAt: new Date() })
       .where(eq(users.id, user.id));
 
-    const { password, validationCode, ...sessionUser } = user;
-    await replaceUserSession(event, { user: sessionUser });
+    await replaceUserSession(event, {
+      user: {
+        id: user.id,
+        firstname: user.firstname,
+        lastname: user.lastname,
+        email: user.email,
+        isEnabled: user.isEnabled,
+        role: user.role,
+        address: {
+          line1: user.addressLine1,
+          line2: user.addressLine2,
+          postalCode: user.addressPostalCode,
+          city: user.addressCity,
+        },
+        createdAt: user.createdAt,
+        lastLoginAt: user.lastLoginAt,
+      },
+    });
   }
 
   async register(data: Auth['Register']) {
