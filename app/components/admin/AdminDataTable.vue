@@ -4,7 +4,7 @@ import type { VNode } from 'vue';
 
 const page = defineModel<number>('page', { required: true });
 const perPage = defineModel<number>('perPage', { required: true });
-defineEmits<{ (e: 'filter'): void }>();
+
 defineProps<{
   total: number;
   items: Array<T>;
@@ -32,12 +32,6 @@ const onPaginate = (event: DataTablePageEvent) => {
         }"
       >
         <slot name="filters" />
-
-        <Button @click="$emit('filter')">
-          <template #icon>
-            <Icon name="lucide:filter" />
-          </template>
-        </Button>
       </div>
 
       <div class="listing-divider">
@@ -73,7 +67,7 @@ const onPaginate = (event: DataTablePageEvent) => {
 .listing-divider {
   position: relative;
   height: 4px;
-  margin: 1rem 0;
+  margin-top: 1rem;
   display: flex;
   align-items: center;
 }

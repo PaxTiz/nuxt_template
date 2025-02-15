@@ -18,7 +18,7 @@ const { errors } = useFormErrors(props.for);
           {{ error.message }}
         </li>
       </ul>
-      <span v-else>{{ errors[0].message }}</span>
+      <span v-else>{{ errors[0]!.message }}</span>
     </div>
   </Message>
 </template>

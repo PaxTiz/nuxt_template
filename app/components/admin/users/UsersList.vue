@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import type { User } from '~~/server/database';
 import type { Users } from '#shared/types';
+import type { User } from '~~/server/database';
 
 const activeAccountOptions = [
   { label: 'Tout', value: undefined },
@@ -8,10 +8,7 @@ const activeAccountOptions = [
   { label: 'Non', value: false },
 ];
 
-const { items, filters, pending, refresh } = await useDataTable<
-  Users['Search'],
-  User
->({
+const { items, filters, pending } = await useDataTable<Users['Search'], User>({
   url: '/api/users',
   filters: {
     page: 1,
@@ -30,7 +27,6 @@ const { items, filters, pending, refresh } = await useDataTable<
     :total="items.total"
     :filters-per-row="3"
     :loading="pending"
-    @filter="refresh"
   >
     <template #filters>
       <InputText

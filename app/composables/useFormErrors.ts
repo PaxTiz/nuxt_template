@@ -1,8 +1,9 @@
 import type { FormError } from '~/utils/errors/errors';
 import { cleanErrors } from '~/utils/errors/messages';
 
-export const useFormErrors = (key: string) => {
-  const errors = useState<Array<FormError>>(key, () => []);
+export const useFormErrors = (key?: string) => {
+  const realKey = key ?? `form_errors:${useId()}`;
+  const errors = useState<Array<FormError>>(realKey, () => []);
 
   const setErrors = (e: Array<FormError> | undefined) => {
     errors.value = (e ?? []).map((e) => ({
@@ -16,6 +17,7 @@ export const useFormErrors = (key: string) => {
   };
 
   return {
+    key: realKey,
     errors: readonly(errors),
     setErrors,
     reset,
