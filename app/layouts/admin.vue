@@ -9,7 +9,7 @@ import Sidebar from '~/components/admin/Sidebar.vue';
         <router-link to="/admin">
           <img
             src="https://about.google/assets-main/img/glue-google-color-logo.svg"
-            alt=""
+            alt="Logo de l'application"
           />
         </router-link>
       </div>
@@ -39,10 +39,13 @@ import Sidebar from '~/components/admin/Sidebar.vue';
 
 .admin__layout-logo {
   grid-area: logo;
-  padding: theme('padding.6') theme('padding.6') 0 theme('padding.6');
+  padding: theme('padding.6') theme('padding.4') 0 theme('padding.4');
   display: flex;
   align-items: center;
-  height: 75px;
+}
+.admin__layout-logo img {
+  width: auto;
+  height: 35px;
 }
 
 .admin__layout-sidebar {
