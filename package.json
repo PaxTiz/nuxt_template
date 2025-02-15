@@ -14,6 +14,7 @@
     "mail:dev": "maildev --incoming-user user --incoming-pass pass"
   },
   "dependencies": {
+    "@nuxtjs/seo": "^2.1.1",
     "@primevue/themes": "^4.2.5",
     "@tiptap/extension-image": "^2.10.4",
     "@tiptap/extension-link": "^2.10.4",

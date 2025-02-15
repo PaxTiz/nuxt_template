@@ -12,7 +12,6 @@ export default defineNuxtConfig({
 
   typescript: {
     strict: true,
-
     typeCheck: true,
   },
 
@@ -27,6 +26,13 @@ export default defineNuxtConfig({
     head: {
       titleTemplate: '%s - ' + process.env.NUXT_PUBLIC_APPLICATION_NAME,
     },
+  },
+
+  site: {
+    name: process.env.NUXT_PUBLIC_APPLICATION_NAME,
+    url: process.env.NUXT_PUBLIC_WEB_URL,
+    env: process.env.NUXT_PUBLIC_ENVIRONMENT,
+    indexable: process.env.NUXT_PUBLIC_ENVIRONMENT === 'production',
   },
 
   runtimeConfig: {
@@ -75,6 +81,7 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@vueuse/nuxt',
     '@nuxt/icon',
+    '@nuxtjs/seo',
   ],
 
   primevue: {
@@ -104,5 +111,19 @@ export default defineNuxtConfig({
         'TabPanel',
       ],
     },
+  },
+
+  robots: {
+    blockNonSeoBots: true,
+    blockAiBots: true,
+    disallow: ['/admin'],
+  },
+
+  linkChecker: {
+    enabled: false,
+  },
+
+  ogImage: {
+    enabled: false,
   },
 });
