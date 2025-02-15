@@ -3,9 +3,9 @@ import type { User } from '~~/server/database';
 
 const props = defineProps<{ user: User }>();
 
-const { formatDate } = useFormatter();
-const createdAt = formatDate(props.user.createdAt, 'dd/MM/yyyy à kk:mm');
-const lastLoginAt = formatDate(props.user.lastLoginAt, 'dd/MM/yyyy à kk:mm');
+const { formatDatetime } = useFormatter();
+const createdAt = formatDatetime(props.user.createdAt);
+const lastLoginAt = formatDatetime(props.user.lastLoginAt);
 </script>
 
 <template>

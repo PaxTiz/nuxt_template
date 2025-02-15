@@ -1,8 +1,16 @@
-import { formatDate, setDefaultOptions } from 'date-fns';
-import { fr } from 'date-fns/locale';
+import { DateTime, Settings } from 'luxon';
 
-setDefaultOptions({ locale: fr });
+export const useFormatter = () => {
+  Settings.defaultLocale = 'fr';
 
-export const useFormatter = () => ({
-  formatDate,
-});
+  return {
+    formatDatetime: (date: Date | string) => {
+      const d =
+        typeof date === 'string'
+          ? DateTime.fromISO(date)
+          : DateTime.fromJSDate(date);
+
+      return d.toLocaleString(DateTime.DATETIME_SHORT);
+    },
+  };
+};
