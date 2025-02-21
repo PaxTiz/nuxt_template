@@ -1,7 +1,7 @@
 import { internal } from '~~/server/lib/internal';
 import { dataImporterSchema } from '#shared/types';
 
-export default eventHandler(async (event) => {
+export default defineEventHandler(async (event) => {
   await useUser(event, ['ADMIN', 'DEVELOPER']);
 
   const { body } = await useValidation(event, {

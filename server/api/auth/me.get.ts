@@ -1,1 +1,1 @@
-export default eventHandler(useUser);
+export default defineEventHandler(useUser);

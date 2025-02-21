@@ -5,7 +5,7 @@ const schema = z.object({
   collection: z.enum(['users']),
 });
 
-export default eventHandler(async (event) => {
+export default defineEventHandler(async (event) => {
   await useUser(event, ['ADMIN', 'DEVELOPER']);
 
   const { query } = await useValidation(event, {
