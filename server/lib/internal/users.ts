@@ -3,7 +3,7 @@ import { and, count, desc, eq, like, or, SQL } from 'drizzle-orm';
 import { users } from '~~/server/database';
 import { Service } from '../service';
 
-export default class UsersService extends Service {
+export class UsersService extends Service {
   async findById(id: string): Promise<UserResource | null> {
     const user = await this.database.query.users.findFirst({
       columns: {

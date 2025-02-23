@@ -1,9 +1,9 @@
-import AuthService from './auth';
-import ExporterService from './exports';
-import DataExtracter from './import/extracter';
-import DataImporter from './import/importer';
+import { AuthService } from './auth';
+import { ExporterService } from './exports';
+import { DataExtracter } from './import/extracter';
+import { DataImporter } from './import/importer';
 import { MediasService } from './medias';
-import UsersService from './users';
+import { UsersService } from './users';
 
 export const internal = {
   auth: new AuthService(),

@@ -7,7 +7,7 @@ import { randomString } from '~~/server/utils/strings';
 import { sendEmail } from '../email';
 import { Service } from '../service';
 
-export default class AuthService extends Service {
+export class AuthService extends Service {
   async login(event: H3Event, data: Auth['Login']) {
     const user = await this.database.query.users.findFirst({
       where: eq(users.email, data.email),

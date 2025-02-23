@@ -1,7 +1,7 @@
 import { stringify } from 'csv-stringify/sync';
 import { Service } from '../service';
 
-export default class ExporterService extends Service {
+export class ExporterService extends Service {
   async users() {
     const users = await this.database.query.users.findMany();
     return stringify([
