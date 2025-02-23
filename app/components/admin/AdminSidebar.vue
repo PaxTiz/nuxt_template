@@ -50,7 +50,7 @@ const onLogout = async () => {
             </span>
           </template>
 
-          <SidebarLink
+          <AdminSidebarLink
             v-for="child in item.children"
             :key="child.text"
             :text="child.text"
@@ -59,7 +59,7 @@ const onLogout = async () => {
             :active="child.active"
           />
         </ToggleableContent>
-        <SidebarLink
+        <AdminSidebarLink
           v-else
           :text="item.text"
           :to="item.to"

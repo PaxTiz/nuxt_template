@@ -1,6 +1,4 @@
-<script lang="ts" setup>
-import Sidebar from '~/components/admin/Sidebar.vue';
-</script>
+<script lang="ts" setup></script>
 
 <template>
   <NuxtLayout name="default">
@@ -15,7 +13,7 @@ import Sidebar from '~/components/admin/Sidebar.vue';
       </div>
 
       <div class="admin__layout-sidebar">
-        <Sidebar />
+        <AdminSidebar />
       </div>
 
       <div class="admin__layout-body">

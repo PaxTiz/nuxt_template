@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { type UserResource } from '#shared/types';
-import UserKeyDetails from '~/components/admin/users/UserKeyDetails.vue';
 
 definePageMeta({ layout: 'admin', middleware: 'admin' });
 
