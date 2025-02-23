@@ -16,19 +16,11 @@ export default defineNitroPlugin(async () => {
   ];
 
   for (const job of jobs) {
-    if (typeof job.runAt === 'number') {
-      logger.info(`job '%s' configured to run every %ds`, job.name, job.runAt);
-      setInterval(
-        async () => await processJobs(jobs, job.name),
-        job.runAt * 1000,
-      );
-    } else {
-      logger.info(`job '%s' configured to run at '%s'`, job.name, job.runAt);
+    logger.info(`job '%s' configured to run at '%s'`, job.name, job.runAt);
 
-      new Cron(job.runAt, async () => {
-        await processJobs(jobs, job.name);
-      });
-    }
+    new Cron(job.runAt, async () => {
+      await processJobs(jobs, job.name);
+    });
   }
 
   await processJobs(jobs);

@@ -5,10 +5,8 @@ import { type DatabaseJob, __jobs } from '../database/schema/__jobs';
 export type Job = {
   name: string;
 
-  /**
-   * Cron expression or duration in seconds
-   */
-  runAt: number | string;
+  /** Cron expression */
+  runAt: string;
 
   handler: (args: DatabaseJob) => Promise<void>;
 };
