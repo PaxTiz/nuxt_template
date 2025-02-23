@@ -3,7 +3,7 @@ import { createLogger, format, transports } from 'winston';
 
 const BASE_DIRECTORY = join(process.cwd(), '.storage', 'logs');
 const ERRORS_LOG = join(BASE_DIRECTORY, 'error.log');
-const ALL_LOG = join(BASE_DIRECTORY, 'error.log');
+const ALL_LOG = join(BASE_DIRECTORY, 'all.log');
 
 export const useLogger = (service: string) => {
   const config = useRuntimeConfig();
