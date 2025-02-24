@@ -271,18 +271,18 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .editor {
-  border: 1px solid theme('borderColor.gray.300');
-  border-radius: theme('borderRadius.DEFAULT');
+  border: 1px solid var(--color-gray-300);
+  border-radius: var(--radius-md);
 }
 
 .editor .editor__toolbar {
   display: flex;
   align-items: center;
-  gap: theme('gap.4');
+  gap: calc(var(--spacing) * 4);
   flex-wrap: wrap;
-  border-bottom: 1px solid theme('borderColor.gray.300');
-  background-color: theme('backgroundColor.gray.50');
-  padding: theme('padding.2');
+  border-bottom: 1px solid var(--color-gray-300);
+  background-color: var(--color-gray-50);
+  padding: calc(var(--spacing) * 2);
 }
 .editor .editor__toolbar-group {
   display: flex;
@@ -290,14 +290,14 @@ onBeforeUnmount(() => {
 }
 
 .editor__toolbar-group .editor__toolbar-button:first-child {
-  border-top-left-radius: theme('borderRadius.DEFAULT');
-  border-bottom-left-radius: theme('borderRadius.DEFAULT');
+  border-top-left-radius: var(--radius-sm);
+  border-bottom-left-radius: var(--radius-sm);
 }
 .editor__toolbar-group .editor__toolbar-button:last-child {
-  border-top-right-radius: theme('borderRadius.DEFAULT');
-  border-bottom-right-radius: theme('borderRadius.DEFAULT');
+  border-top-right-radius: var(--radius-sm);
+  border-bottom-right-radius: var(--radius-sm);
 }
-.editor__toolbar-group .editor__toolbar-button::not(last-child) {
+.editor__toolbar-group .editor__toolbar-button:not(:last-of-type) {
   border-right: none;
 }
 
@@ -306,20 +306,20 @@ onBeforeUnmount(() => {
   place-items: center;
   width: 30px;
   height: 30px;
-  background-color: theme('backgroundColor.white');
-  border: 1px solid theme('colors.gray.300');
+  background-color: var(--color-white);
+  border: 1px solid var(--color-gray-300);
   cursor: pointer;
 }
 .editor__toolbar-button.active {
-  color: theme('colors.primary');
-  background-color: theme('backgroundColor.blue.100');
+  color: var(--color-primary);
+  background-color: var(--color-blue-100);
 }
 
 .editor .editor__content {
-  padding: theme('padding.2');
+  padding: calc(var(--spacing) * 2);
 }
 .editor .editor__content :deep(a) {
-  color: theme('colors.primary');
+  color: var(--color-primary);
   text-decoration: underline;
 }
 </style>

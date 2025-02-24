@@ -32,12 +32,13 @@
   grid-template-columns: 300px 1fr;
   grid-template-rows: auto 1fr;
   min-height: 100vh;
-  background: var(--admin-background);
+  background: var(--color-admin-background);
 }
 
 .admin__layout-logo {
   grid-area: logo;
-  padding: theme('padding.6') theme('padding.4') 0 theme('padding.4');
+  padding: calc(var(--spacing) * 6) calc(var(--spacing) * 4) 0
+    calc(var(--spacing) * 4);
   display: flex;
   align-items: center;
 }
@@ -53,7 +54,7 @@
 .admin__layout-body {
   grid-area: body;
   overflow-y: scroll;
-  margin: theme('margin.4');
+  margin: calc(var(--spacing) * 4);
   height: min-content;
 }
 </style>

@@ -48,7 +48,7 @@ defineSlots<{
 
 <style scoped>
 .admin-header {
-  margin-bottom: theme('margin.4');
+  margin-bottom: calc(var(--spacing) * 4);
 }
 
 .admin-header__content {
@@ -67,15 +67,15 @@ defineSlots<{
 .admin-header__breadcrumb > span {
   font-size: 1rem;
   font-weight: 500;
-  color: theme('colors.gray.500');
+  color: var(--color-gray-500);
   text-decoration: none;
   border-bottom: 1px solid transparent;
 }
 .admin-header__breadcrumb > a:hover {
-  color: theme('colors.gray.900');
+  color: var(--color-gray-900);
 }
 .admin-header__breadcrumb > a:not(:first-child):hover {
-  border-color: theme('colors.gray.900');
+  border-color: var(--color-gray-900);
 }
 
 .admin-header__actions {

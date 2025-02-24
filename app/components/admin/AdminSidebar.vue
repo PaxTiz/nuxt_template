@@ -107,11 +107,11 @@ const onLogout = async () => {
 }
 
 .sidebar__body {
-  padding: theme('padding.4');
+  padding: calc(var(--spacing) * 4);
 }
 
 .sidebar__end {
-  padding: theme('padding.4');
+  padding: calc(var(--spacing) * 4);
 }
 
 .sidebar__end-user {
@@ -119,7 +119,7 @@ const onLogout = async () => {
   justify-content: space-between;
   align-items: center;
   font-weight: 500;
-  color: theme('colors.gray.500');
+  color: var(--color-gray-500);
   font-size: 0.9rem;
 }
 </style>

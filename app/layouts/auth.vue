@@ -23,15 +23,15 @@ defineProps<{ title: string }>();
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: theme('backgroundColor.gray.100');
+  background-color: var(--color-gray-100);
 }
 
 .auth-layout .auth {
   width: 600px;
   background-color: #fff;
   padding: 2rem;
-  border-radius: theme('borderRadius.lg');
-  border: 1px solid theme('borderColor.gray.400');
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-gray-400);
 }
 
 .auth-layout .auth h1 {

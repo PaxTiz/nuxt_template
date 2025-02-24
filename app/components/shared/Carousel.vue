@@ -139,13 +139,24 @@ onBeforeUnmount(() => api.value?.destroy());
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 30px;
-  height: 30px;
   font-size: 1rem;
   background: transparent;
-  border: 1px solid theme('borderColor.gray.300');
+  border: 2px solid var(--color-gray-300);
   border-radius: 50%;
   cursor: pointer;
+}
+.embla__navigation-button {
+  width: 30px;
+  height: 30px;
+}
+.embla__pagination-button {
+  width: 20px;
+  height: 20px;
+}
+.embla__pagination-selected {
+  border-color: #fff;
+  background-color: var(--color-primary);
+  outline: 2px solid var(--color-primary);
 }
 .embla__navigation {
   display: flex;
@@ -164,7 +175,7 @@ onBeforeUnmount(() => api.value?.destroy());
   }
 
   &-selected {
-    border: 3px solid theme('borderColor.primary');
+    border: 3px solid var(--color-primary);
   }
 }
 </style>

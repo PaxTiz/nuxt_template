@@ -54,7 +54,7 @@ const back = () => {
 pre {
   background: #f4f4f4;
   border: 1px solid #ddd;
-  border-left: 5px solid theme('colors.gray.500');
+  border-left: 5px solid var(--color-gray-500);
   color: #666;
   page-break-inside: avoid;
   font-family: monospace;

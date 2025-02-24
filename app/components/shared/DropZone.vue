@@ -117,17 +117,17 @@ const { isOverDropZone } = useDropZone(dropzoneRef, {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: theme('borderRadius.DEFAULT');
-  border: 1px dashed theme('borderColor.gray.400');
+  border-radius: var(--radius-md);
+  border: 1px dashed var(--color-gray-400);
   padding: 2rem;
   cursor: pointer;
 }
 .dropzone__hover {
-  border-color: theme('borderColor.primary');
-  background-color: theme('backgroundColor.blue.50');
+  border-color: var(--color-primary);
+  background-color: var(--color-blue-50);
 }
 .dropzone__label {
-  color: theme('colors.gray.400');
+  color: var(--color-gray-400);
 }
 
 .dropzone__preview {
@@ -140,12 +140,12 @@ const { isOverDropZone } = useDropZone(dropzoneRef, {
   display: flex;
   flex-direction: column;
   width: 150px;
-  border: 1px solid theme('borderColor.gray.400');
-  border-radius: theme('borderRadius.DEFAULT');
+  border: 1px solid var(--color-gray-400);
+  border-radius: var(--radius-md);
 }
 .dropzone__preview-item:hover {
-  border-color: theme('borderColor.red.400');
-  background-color: theme('backgroundColor.red.50');
+  border-color: var(--color-red-400);
+  background-color: var(--color-red-50);
   cursor: pointer;
 }
 .dropzone__preview-item > div:first-child {
@@ -160,7 +160,7 @@ const { isOverDropZone } = useDropZone(dropzoneRef, {
   width: 100%;
   max-width: 148px;
   max-height: 148px;
-  border-radius: theme('borderRadius.DEFAULT');
+  border-radius: var(--radius-md);
   object-fit: cover;
 }
 .dropzone__preview-item p {
@@ -169,11 +169,11 @@ const { isOverDropZone } = useDropZone(dropzoneRef, {
   align-items: center;
   height: 50px;
   font-size: 0.8rem;
-  background-color: theme('borderColor.gray.200');
+  background-color: var(--color-gray-200);
   padding: 8px;
   margin: 0;
-  border-top: 1px solid theme('borderColor.gray.400');
-  border-bottom-left-radius: theme('borderRadius.DEFAULT');
-  border-bottom-right-radius: theme('borderRadius.DEFAULT');
+  border-top: 1px solid var(--color-gray-400);
+  border-bottom-left-radius: var(--radius-md);
+  border-bottom-right-radius: var(--radius-md);
 }
 </style>

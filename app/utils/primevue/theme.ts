@@ -1,5 +1,5 @@
-import { definePreset } from '@primevue/themes';
-import Aura from '@primevue/themes/aura';
+import { definePreset } from '@primeuix/themes';
+import Aura from '@primeuix/themes/aura';
 
 const preset = definePreset(Aura, {
   semantic: {
@@ -25,7 +25,7 @@ export default {
     darkModeSelector: '.dark',
     cssLayer: {
       name: 'primevue',
-      order: 'tailwind-base, primevue, tailwind-utilities',
+      order: 'theme, base, primevue',
     },
   },
 };

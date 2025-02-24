@@ -19,7 +19,7 @@ defineProps<{
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: theme('colors.gray.500');
+  color: var(--color-gray-500);
   text-decoration: none;
   padding: 0.25rem 0;
   margin: 0.25rem 0;
@@ -28,7 +28,7 @@ defineProps<{
 
 .sidebar__link:hover,
 .sidebar__link.active {
-  color: theme('colors.gray.900');
+  color: var(--color-gray-900);
   font-weight: 500;
 }
 </style>

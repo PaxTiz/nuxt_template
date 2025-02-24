@@ -1,9 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
 
-:root {
-  --primary-color: var(--p-primary-color);
+@import 'tailwindcss';
 
-  --admin-background: linear-gradient(
+@plugin "tailwindcss-primeui";
+@plugin "@tailwindcss/typography";
+
+@source "../../**/*.vue";
+
+@theme {
+  --font-serif: 'Figtree', sans-serif;
+  --font-sans: 'Figtree', sans-serif;
+  --font-mono: 'Figtree', sans-serif;
+
+  --color-primary: var(--p-primary-color);
+
+  --color-admin-background: linear-gradient(
     180deg,
     #e0e7f5 0%,
     rgba(170, 194, 239, 0.06) 111.26%
@@ -11,7 +22,6 @@
 }
 
 * {
-  font-family: 'Figtree', sans-serif;
   box-sizing: border-box;
 }
 
@@ -21,7 +31,7 @@ body {
 }
 
 .admin__layout .form-group label {
-  color: theme('colors.gray.500');
+  color: var(--color-gray-500);
   font-weight: 500 !important;
   font-size: 0.9rem;
 }

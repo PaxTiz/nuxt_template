@@ -1,3 +1,4 @@
+import tailwindcss from '@tailwindcss/vite';
 import fr from './app/utils/primevue/locale.json';
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
@@ -78,7 +79,6 @@ export default defineNuxtConfig({
   modules: [
     'nuxt-auth-utils',
     '@primevue/nuxt-module',
-    '@nuxtjs/tailwindcss',
     '@vueuse/nuxt',
     '@nuxt/icon',
     '@nuxtjs/seo',
@@ -125,5 +125,9 @@ export default defineNuxtConfig({
 
   ogImage: {
     enabled: false,
+  },
+
+  vite: {
+    plugins: [tailwindcss()],
   },
 });

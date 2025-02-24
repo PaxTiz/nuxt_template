@@ -25,13 +25,13 @@ defineEmits<{ (e: 'click'): void }>();
   place-items: center;
   width: 30px;
   height: 30px;
-  background-color: theme('backgroundColor.white');
-  border: 1px solid theme('colors.gray.300');
+  background-color: var(--color-white);
+  border: 1px solid var(--color-gray-300);
   cursor: pointer;
 }
 
 .editor__toolbar-button.active {
-  color: theme('colors.primary');
-  background-color: theme('backgroundColor.blue.100');
+  color: var(--color-primary);
+  background-color: var(--color-blue-100);
 }
 </style>
