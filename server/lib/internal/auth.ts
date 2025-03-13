@@ -2,7 +2,7 @@ import type { Auth } from '#shared/types';
 import { hash, verify } from 'argon2';
 import { and, eq } from 'drizzle-orm';
 import { H3Event } from 'h3';
-import { passwordResets, users } from '~~/server/database';
+import { passwordResetsTable, usersTable } from '~~/server/database';
 import { randomString } from '~~/server/utils/strings';
 import { sendEmail } from '../email';
 import { Service } from '../service';
@@ -10,7 +10,7 @@ import { Service } from '../service';
 export class AuthService extends Service {
   async login(event: H3Event, data: Auth['Login']) {
     const user = await this.database.query.users.findFirst({
-      where: eq(users.email, data.email),
+      where: { email: data.email },
     });
 
     if (!user) {
@@ -27,9 +27,9 @@ export class AuthService extends Service {
     }
 
     await this.database
-      .update(users)
+      .update(usersTable)
       .set({ lastLoginAt: new Date() })
-      .where(eq(users.id, user.id));
+      .where(eq(usersTable.id, user.id));
 
     await replaceUserSession(event, {
       user: {
@@ -53,7 +53,7 @@ export class AuthService extends Service {
 
   async register(data: Auth['Register']) {
     const emailInUse = await this.database.query.users.findFirst({
-      where: eq(users.email, data.email),
+      where: { email: data.email },
     });
 
     if (emailInUse) {
@@ -64,7 +64,7 @@ export class AuthService extends Service {
     const passwordHash = await hash(data.password);
 
     await Promise.all([
-      this.database.insert(users).values({
+      this.database.insert(usersTable).values({
         firstname: data.firstname,
         lastname: data.lastname,
         email: data.email,
@@ -89,7 +89,7 @@ export class AuthService extends Service {
 
   async validateAccount(data: Auth['ValidateAccount']) {
     const user = await this.database.query.users.findFirst({
-      where: eq(users.email, data.email),
+      where: { email: data.email },
     });
 
     if (!user) {
@@ -106,16 +106,19 @@ export class AuthService extends Service {
     }
 
     await this.database
-      .update(users)
+      .update(usersTable)
       .set({ isEnabled: true, validationCode: null })
       .where(
-        and(eq(users.email, data.email), eq(users.validationCode, data.token)),
+        and(
+          eq(usersTable.email, data.email),
+          eq(usersTable.validationCode, data.token),
+        ),
       );
   }
 
   async forgotPassword(data: Auth['ForgotPassword']) {
     const user = await this.database.query.users.findFirst({
-      where: eq(users.email, data.email),
+      where: { email: data.email },
     });
 
     if (!user) {
@@ -124,7 +127,7 @@ export class AuthService extends Service {
 
     const token = randomString();
     await Promise.all([
-      this.database.insert(passwordResets).values({
+      this.database.insert(passwordResetsTable).values({
         userId: user.id,
         token,
       }),
@@ -142,7 +145,7 @@ export class AuthService extends Service {
 
   async resetPassword(data: Auth['ResetPassword']) {
     const passwordReset = await this.database.query.passwordResets.findFirst({
-      where: eq(passwordResets.token, data.token),
+      where: { token: data.token },
       with: { user: true },
     });
 
@@ -153,7 +156,7 @@ export class AuthService extends Service {
       });
     }
 
-    if (passwordReset.user.email !== data.email) {
+    if (passwordReset.user?.email !== data.email) {
       throw createFormError({
         key: 'email',
         message: 'reset_password_invalid_email_for_token',
@@ -164,13 +167,13 @@ export class AuthService extends Service {
     await Promise.all([
       this.database.transaction(async (tx) => {
         await tx
-          .update(users)
+          .update(usersTable)
           .set({ password: newHash })
-          .where(eq(users.id, passwordReset.user.id));
+          .where(eq(usersTable.id, passwordReset.user!.id));
 
         await tx
-          .delete(passwordResets)
-          .where(eq(passwordResets.token, passwordReset.token));
+          .delete(passwordResetsTable)
+          .where(eq(passwordResetsTable.token, passwordReset.token));
       }),
       sendEmail({
         template: 'reset_password',

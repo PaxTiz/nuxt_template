@@ -4,12 +4,12 @@ import { randomUUID } from 'node:crypto';
 import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { basename, dirname, extname, join } from 'node:path';
 import sharp from 'sharp';
-import { __medias } from '~~/server/database';
+import { __mediasTable } from '~~/server/database';
 import { Service } from '../service';
 
 const CACHE_PREFIX = '/__cache__';
 
-type Media = typeof __medias.$inferSelect;
+type Media = typeof __mediasTable.$inferSelect;
 type ImageFormat = 'png' | 'jpeg' | 'webp' | 'avif';
 type Modifiers = {
   width?: number;
@@ -70,7 +70,7 @@ export class MediasService extends Service {
 
     await Promise.all([
       writeFile(diskPath, data),
-      this.database.insert(__medias).values({
+      this.database.insert(__mediasTable).values({
         filename: safeFilename,
         originalFilename: baseFilename,
         diskPath: relativeDiskPath,
@@ -154,7 +154,7 @@ export class MediasService extends Service {
    */
   public async delete(id: number) {
     const files = await this.database.query.__medias.findFirst({
-      where: eq(__medias.id, id),
+      where: { id },
       with: { children: true },
     });
 
@@ -167,7 +167,9 @@ export class MediasService extends Service {
       ...files.children.map((file) => rm(this.toAbsolutePath(file.diskPath))),
     ]);
 
-    await this.database.delete(__medias).where(eq(__medias.id, files.id));
+    await this.database
+      .delete(__mediasTable)
+      .where(eq(__mediasTable.id, files.id));
   }
 
   /**
@@ -234,18 +236,18 @@ export class MediasService extends Service {
     let file: Array<Media> | null = null;
     if (modifiersKey) {
       const queryWithoutModifiers = this.database
-        .select({ id: __medias.id })
-        .from(__medias)
-        .where(eq(__medias.publicPath, path))
+        .select({ id: __mediasTable.id })
+        .from(__mediasTable)
+        .where(eq(__mediasTable.publicPath, path))
         .limit(1);
 
       const queryWithModifiers = this.database
-        .select({ id: __medias.id })
-        .from(__medias)
+        .select({ id: __mediasTable.id })
+        .from(__mediasTable)
         .where(
           and(
-            eq(__medias.publicPath, path),
-            eq(__medias.modifiersKey, modifiersKey),
+            eq(__mediasTable.publicPath, path),
+            eq(__mediasTable.modifiersKey, modifiersKey),
           ),
         )
         .limit(1);
@@ -254,14 +256,14 @@ export class MediasService extends Service {
 
       file = await this.database
         .select()
-        .from(__medias)
-        .where(eq(__medias.id, subquery))
+        .from(__mediasTable)
+        .where(eq(__mediasTable.id, subquery))
         .limit(1);
     } else {
       file = await this.database
         .select()
-        .from(__medias)
-        .where(eq(__medias.publicPath, path))
+        .from(__mediasTable)
+        .where(eq(__mediasTable.publicPath, path))
         .limit(1);
     }
 

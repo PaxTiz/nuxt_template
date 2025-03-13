@@ -1,6 +1,5 @@
-import { and, eq, or, sql } from 'drizzle-orm';
-import { useDatabase } from '../database';
-import { type DatabaseJob, __jobs } from '../database/schema/__jobs';
+import { eq, sql } from 'drizzle-orm';
+import { type DatabaseJob, __jobsTable, useDatabase } from '../database';
 
 export type Job = {
   name: string;
@@ -25,7 +24,7 @@ export const queueJob = async ({
   retries?: number;
 }) => {
   const database = useDatabase();
-  await database.insert(__jobs).values({
+  await database.insert(__jobsTable).values({
     name,
     data,
     fatal,
@@ -38,10 +37,14 @@ export const processJobs = async (handlers: Array<Job>, name?: string) => {
   const database = useDatabase();
 
   const jobs = await database.query.__jobs.findMany({
-    where: and(
-      or(eq(__jobs.status, 'pending'), eq(__jobs.status, 'retry')),
-      name ? eq(__jobs.name, name) : undefined,
-    ),
+    where: {
+      AND: [
+        {
+          OR: [{ status: 'pending' }, { status: 'retry' }],
+        },
+        name ? { name } : {},
+      ],
+    },
   });
 
   logger.info(`%d jobs to process`, jobs.length);
@@ -60,9 +63,9 @@ export const processJobs = async (handlers: Array<Job>, name?: string) => {
       await handler.handler(job);
 
       await database
-        .update(__jobs)
+        .update(__jobsTable)
         .set({ status: 'success', processedAt: new Date() })
-        .where(eq(__jobs.id, job.id));
+        .where(eq(__jobsTable.id, job.id));
 
       childLogger.info(`job '%s' processed successfully`, job.name);
     } catch (e) {
@@ -70,21 +73,21 @@ export const processJobs = async (handlers: Array<Job>, name?: string) => {
 
       if (job.fatal || job.currentRetries + 1 >= job.allowedRetries) {
         await database
-          .update(__jobs)
+          .update(__jobsTable)
           .set({
             status: 'failed',
             processedAt: null,
             currentRetries: job.allowedRetries,
           })
-          .where(eq(__jobs.id, job.id));
+          .where(eq(__jobsTable.id, job.id));
       } else {
         await database
-          .update(__jobs)
+          .update(__jobsTable)
           .set({
             status: 'retry',
-            currentRetries: sql`${__jobs.currentRetries} + 1`,
+            currentRetries: sql`${__jobsTable.currentRetries} + 1`,
           })
-          .where(eq(__jobs.id, job.id));
+          .where(eq(__jobsTable.id, job.id));
       }
     }
   }
