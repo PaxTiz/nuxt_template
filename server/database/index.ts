@@ -133,15 +133,15 @@ export const usersTable = mysqlTable('users', (t) => ({
     .default(sql`NOW()`),
 }));
 
-export const databaseSchema = {
+const databaseSchema = {
   __jobs: __jobsTable,
   __medias: __mediasTable,
   users: usersTable,
   passwordResets: passwordResetsTable,
 };
 
-export const databaseSchemaRelations = defineRelations(databaseSchema, (r) => ({
-  medias: {
+const databaseSchemaRelations = defineRelations(databaseSchema, (r) => ({
+  __medias: {
     parent: r.one.__medias({
       from: r.__medias.parentId,
       to: r.__medias.id,
@@ -180,11 +180,9 @@ export const useDatabase = () => {
     });
 
     _db = drizzle(connection, {
-      mode: 'default',
       casing: 'snake_case',
       logger: config.database.logs,
       relations: databaseSchemaRelations,
-      schema: databaseSchema,
     });
   }
 

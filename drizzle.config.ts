@@ -2,7 +2,7 @@ import { defineConfig } from 'drizzle-kit';
 
 export default defineConfig({
   dialect: 'mysql',
-  schema: './server/database/schema/index.ts',
+  schema: './server/database/index.ts',
   out: './server/database/drizzle',
   casing: 'snake_case',
   migrations: {
